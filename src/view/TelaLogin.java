@@ -69,6 +69,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jCheckBox1.setText("Admin");
 
         jButton3.setText("Registar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,6 +156,11 @@ public class TelaLogin extends javax.swing.JFrame {
     private void numeroEleitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroEleitorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_numeroEleitorActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new ResgistarEleitor().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
