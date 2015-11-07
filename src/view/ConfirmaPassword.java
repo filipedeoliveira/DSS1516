@@ -5,6 +5,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Filipe Oliveira
@@ -29,9 +31,9 @@ public class ConfirmaPassword extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        novaPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        novaPassword2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -49,6 +51,11 @@ public class ConfirmaPassword extends javax.swing.JFrame {
         });
 
         jButton2.setText("Confirmar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,8 +70,8 @@ public class ConfirmaPassword extends javax.swing.JFrame {
                         .addComponent(jButton2))
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
-                    .addComponent(jPasswordField1)
-                    .addComponent(jPasswordField2))
+                    .addComponent(novaPassword)
+                    .addComponent(novaPassword2))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -72,11 +79,11 @@ public class ConfirmaPassword extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(novaPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(novaPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -108,6 +115,18 @@ public class ConfirmaPassword extends javax.swing.JFrame {
             new ResgistarEleitor().setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(novaPassword.getText().equals(novaPassword2.getText())){
+            JOptionPane.showMessageDialog(null, "Criada com Sucesso");
+            new TelaLogin().setVisible(true);
+            this.dispose();
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "As Passwords não coincidem");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,7 +169,7 @@ public class ConfirmaPassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JPasswordField novaPassword;
+    private javax.swing.JPasswordField novaPassword2;
     // End of variables declaration//GEN-END:variables
 }
