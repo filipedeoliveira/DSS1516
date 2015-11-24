@@ -59,7 +59,10 @@ public class RegistarEleitor {
         if (this == o)return true;
         if((o == null) || (this.getClass() != o.getClass())) return false;
         RegistarEleitor e = (RegistarEleitor) o;
-        return this.nome.equals(e.getNome()) && this.numCidadao.equals(e.getNumCidadao()) && this.morada.equals(e.getMorada()) && this.freguesia.equals(e.getFreguesia());
+        return this.nome.equals(e.getNome()) && 
+               this.numCidadao.equals(e.getNumCidadao()) && 
+               this.morada.equals(e.getMorada()) && 
+               this.freguesia.equals(e.getFreguesia());
     
     }
 }
