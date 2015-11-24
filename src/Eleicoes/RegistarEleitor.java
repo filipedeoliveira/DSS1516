@@ -51,7 +51,7 @@ public class RegistarEleitor {
     public void setMorada(String morada){
         this.morada=morada;
     }
-    public RegistarEleitor(String freguesia){
+    public void SetFreguesia(String freguesia){
         this.freguesia=freguesia;
     }
     
