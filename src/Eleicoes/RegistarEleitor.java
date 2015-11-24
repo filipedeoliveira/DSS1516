@@ -65,4 +65,23 @@ public class RegistarEleitor {
                this.freguesia.equals(e.getFreguesia());
     
     }
+    
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(" Nome:");
+        sb.append(nome);
+        sb.append('\n');
+        sb.append(" Número de Cidadão:");
+        sb.append(numCidadao);
+        sb.append('\n');
+        sb.append(" Morada:");
+        sb.append(morada);
+        sb.append('\n');
+        sb.append(" Freguesia:");
+        sb.append(freguesia);
+        sb.append('\n');
+        return sb.toString();
+    }
+    
+    
 }
