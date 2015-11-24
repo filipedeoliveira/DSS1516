@@ -10,5 +10,22 @@ package Eleicoes;
  * @author Filipe Oliveira
  */
 public class Candidatura {
+
+    private String nome;
     
+    public Candidatura(String nome){
+    this.nome=nome;
+    }
+    
+    public Candidatura(Candidatura cand){
+    this.nome=cand.getNome();
+    }
+    
+    public String getNome(){
+    return this.nome;
+    }
+    
+    public void setNome(String myNome){
+    this.nome=myNome;
+    }
 }
