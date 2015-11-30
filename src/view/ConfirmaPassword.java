@@ -118,6 +118,7 @@ public class ConfirmaPassword extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(novaPassword.getText().equals(novaPassword2.getText())){
+            //funcão que vai inserir novo gajo na base de dados, com um id único
             JOptionPane.showMessageDialog(null, "Criada com Sucesso");
             new TelaLogin().setVisible(true);
             this.dispose();
