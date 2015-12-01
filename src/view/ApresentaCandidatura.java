@@ -5,6 +5,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Filipe Oliveira
@@ -146,7 +148,7 @@ public class ApresentaCandidatura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new PopUpCandidaturaA().setVisible(true);
+        JOptionPane.showMessageDialog(null, "Candidatura Apresentada Com Sucesso!");
             this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

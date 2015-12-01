@@ -6,6 +6,7 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -52,9 +53,24 @@ public class Eleicao {
         for (String p : part)
             this.participantes.add(p);
     }
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Eleicao other = (Eleicao) obj;
+        if (!Objects.equals(this.tipoEleicao, other.tipoEleicao)) {
+            return false;
+        }
+        if (!Objects.equals(this.participantes, other.participantes)) {
+            return false;
+        }
+        return true;
+    }
     
     
     
-    
-    
+ 
 }
