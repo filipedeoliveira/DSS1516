@@ -11,30 +11,49 @@ import view.ResgistarEleitor;
  *
  * @author Filipe Oliveira
  */
-public class RegistarEleitor {
+public class Eleitor {
     
-    private String nome, numCidadao, morada, freguesia;
+    private String nome, CC, morada, freguesia, P_Nome;
     
-    public RegistarEleitor(String nome, String numCidadao, String morada, String freguesia){
+    public Eleitor(String nome, String CC, String morada, String freguesia, String P_Nome){
         this.nome=nome;
-        this.numCidadao=numCidadao;
+        this.CC=CC;
         this.morada=morada;
         this.freguesia=freguesia;
+        this.P_Nome=P_Nome;
     }
     
-    public RegistarEleitor(ResgistarEleitor re){
+    public Eleitor(Eleitor re){
         this.nome=re.getNome();
-        this.numCidadao=re.getNumCidadao();
+        this.CC=re.getCC();
         this.morada=re.getMorada();
         this.freguesia=re.getFreguesia();
+        this.P_Nome=re.getP_Nome();
     }
   
     public String getNome(){
         return this.nome;
     }
-    public String getNumCidadao(){
-        return this.numCidadao;
+    public String getCC(){
+        return this.CC;
     }
+
+    public String getP_Nome() {
+        return P_Nome;
+    }
+
+    public void setCC(String CC) {
+        this.CC = CC;
+    }
+
+    public void setFreguesia(String freguesia) {
+        this.freguesia = freguesia;
+    }
+
+    public void setP_Nome(String P_Nome) {
+        this.P_Nome = P_Nome;
+    }
+    
     public String getMorada(){
         return this.morada;
     }
@@ -45,8 +64,8 @@ public class RegistarEleitor {
     public void setNome(String nome){
         this.nome=nome;
     }
-    public void setNumCidadao(String numCidadao){
-        this.numCidadao=numCidadao;
+    public void setNumCidadao(String CC){
+        this.CC=CC;
     }
     public void setMorada(String morada){
         this.morada=morada;
@@ -58,9 +77,9 @@ public class RegistarEleitor {
     public boolean equals(Object o){
         if (this == o)return true;
         if((o == null) || (this.getClass() != o.getClass())) return false;
-        RegistarEleitor e = (RegistarEleitor) o;
+        Eleitor e = (Eleitor) o;
         return this.nome.equals(e.getNome()) && 
-               this.numCidadao.equals(e.getNumCidadao()) && 
+               this.CC.equals(e.getCC()) && 
                this.morada.equals(e.getMorada()) && 
                this.freguesia.equals(e.getFreguesia());
     
@@ -72,7 +91,7 @@ public class RegistarEleitor {
         sb.append(nome);
         sb.append('\n');
         sb.append(" Número de Cidadão:");
-        sb.append(numCidadao);
+        sb.append(CC);
         sb.append('\n');
         sb.append(" Morada:");
         sb.append(morada);
