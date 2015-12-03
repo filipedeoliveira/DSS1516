@@ -22,9 +22,11 @@ public class EleitorDAO {
     public EleitorDAO (){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/?user=root");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","Filipe_94");
         }
-        catch (ClassNotFoundException | SQLException e) {}
+        catch (ClassNotFoundException | SQLException e) {
+        e.printStackTrace();
+        }
     
     }
     
@@ -33,7 +35,8 @@ public class EleitorDAO {
        
             Eleitor a1 = null;
             Statement stm = conn.createStatement();
-            String sql = "INSERT INTO ELEITORES  (CC, NOME, MORADA, FREGUESIA, P_NOME) VALUES (\""+value.getCC()+"\",\""+value.getNome()+"\",\""+value.getMorada()+"\",\""+value.getFreguesia()+"\",\""+value.getP_Nome()+"\");";
+            int x = Integer.parseInt(value.getCC());
+            String sql = "INSERT INTO ELEITORES  (CC, NOME, MORADA, FREGUESIA, P_NOME) VALUES (\""+x+"\",\""+value.getNome()+"\",\""+value.getMorada()+"\",\""+value.getFreguesia()+"\",\""+value.getP_Nome()+"\");";
             int i = stm.executeUpdate(sql);
             return new Eleitor (value.getCC(),value.getNome(),value.getMorada(),value.getFreguesia(),value.getP_Nome());
         
