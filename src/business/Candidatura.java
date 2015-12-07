@@ -5,6 +5,8 @@
  */
 package business;
 
+import java.util.Objects;
+
 /**
  *
  * @author Filipe Oliveira
@@ -28,4 +30,19 @@ public class Candidatura {
     public void setNome(String myNome){
     this.nome=myNome;
     }
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Candidatura other = (Candidatura) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        return true;
+    }
+    
 }
