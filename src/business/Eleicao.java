@@ -14,19 +14,19 @@ import java.util.Objects;
  */
 public class Eleicao {
     private String tipoEleicao;
-    private ArrayList<String> participantes  = new ArrayList();
+    private ArrayList<Participante> participantes  = new ArrayList();
     
     
     public Eleicao(){
         this.tipoEleicao="";
-        this.participantes=new ArrayList<String>();
+        this.participantes=new ArrayList<Participante>();
     }
 
-    public Eleicao(String tipoEleicao, ArrayList<String> part) {
-        participantes = new ArrayList<String>();
+    public Eleicao(String tipoEleicao, ArrayList<Participante> part) {
+        participantes = new ArrayList<Participante>();
         this.tipoEleicao = tipoEleicao;
-        for(String s : participantes)
-            participantes.add(s);
+        for(Participante p : participantes)
+            participantes.add(p);
     }
     
     public Eleicao(Eleicao e){
@@ -38,9 +38,9 @@ public class Eleicao {
         return tipoEleicao;
     }
 
-    public ArrayList<String> getParticipantes() {
-        ArrayList<String> res = participantes;
-        participantes = new ArrayList<String>();
+    public ArrayList<Participante> getParticipantes() {
+        ArrayList<Participante> res = participantes;
+        participantes = new ArrayList<Participante>();
         return res;
     }
 
@@ -48,11 +48,12 @@ public class Eleicao {
         this.tipoEleicao = tipoEleicao;
     }
 
-    public void setParticipantes(ArrayList<String> part) {
-        this.participantes = new ArrayList<String>();
-        for (String p : part)
+    public void setParticipantes(ArrayList<Participante> part) {
+        this.participantes = new ArrayList<Participante>();
+        for (Participante p : part)
             this.participantes.add(p);
     }
+
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -69,8 +70,4 @@ public class Eleicao {
         }
         return true;
     }
-    
-    
-    
- 
 }

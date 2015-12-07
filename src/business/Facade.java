@@ -16,9 +16,15 @@ public class Facade {
     
     
     public static void inserirEleitor(String nome, String CC, String morada, String freguesia, String P_Nome){
+        try{
         EleitorDAO dao = new EleitorDAO();
         Eleitor e = new Eleitor(nome,CC,morada,freguesia,P_Nome);
         dao.put(e);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+            System.out.println("sql exception");
+        }
     }
     
 
