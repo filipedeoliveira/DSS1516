@@ -39,4 +39,10 @@ public class Eleicao2 {
     }
     
     //Método que Constroi um TreeMap<String,Integer> -> BE->50 votos p.e 
+    public TreeMap<String,Integer> resultados(){
+        TreeMap<String, Integer> res = new TreeMap<String, Integer>();
+        for(Participante p : this.listas.values())
+            res.put(p.getParticipante(),p.getVotos());
+        return res;
+    }
 }
