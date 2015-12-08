@@ -15,25 +15,21 @@ import java.util.TreeMap;
 public class Votar {
     private String tipoEleicao;
     private String numEleitor;
-    private TreeMap<Participante, Integer> votacao;
+    private TreeMap<String, Participante> votacao;
+    // ex: Marcelo -> 50 Não estou a conseguir 
 
    
     public Votar(){
         this.tipoEleicao="";
         this.numEleitor="";
-        this.votacao= new TreeMap<Participante, Integer>();
+        this.votacao= new TreeMap<String, Participante>();
     }
-   /* 
-    public Votar(String tipoEleicao, String numEleitor, TreeMap<Participante, Integer> v) {
+  
+    public Votar(String tipoEleicao, String numEleitor, TreeMap<String, Participante> v) {
+        votacao = new TreeMap<String, Participante>();
         this.tipoEleicao = tipoEleicao;
         this.numEleitor = numEleitor;
-        for(Participante p : v.keySet())
-           // this.votacao.put(p.clone(),_____)
-            }
-   */
-
-    
-    
-
-    
+        for(Participante p : v.values())
+            votacao.put(p.getParticipante(),p.clone());    
+    }
 }
