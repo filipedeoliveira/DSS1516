@@ -18,7 +18,7 @@ public class Votar {
     private TreeMap<String, Participante> votacao;
     // ex: Marcelo -> 50 Não estou a conseguir 
 
-   
+  /* 
     public Votar(){
         this.tipoEleicao="";
         this.numEleitor="";
@@ -31,5 +31,5 @@ public class Votar {
         this.numEleitor = numEleitor;
         for(Participante p : v.values())
             votacao.put(p.getParticipante(),p.clone());    
-    }
+    }*/
 }

@@ -41,13 +41,15 @@ public class Participante {
     }
     
     public Participante(Participante p){
+        this.tipoEleicao=p.getEleicao();
         this.participante=p.getParticipante();
         this.votos=p.getVotos();
+        this.elementos=p.getElementos();
     }
     
-    public void updateVoto(String part){
-        if(part.equals(participante))
-            votos=votos++;
+    
+    public String getEleicao(){
+        return tipoEleicao;
     }
     
     public String getParticipante(){
@@ -58,14 +60,36 @@ public class Participante {
         return this.votos;
     }
     
+    public ArrayList<String> getElementos(){
+        ArrayList<String> res = new ArrayList<String>();
+        for(String s : this.elementos)
+            res.add(s);
+        return res;
+    }
+    
+    
+    public void setTipoEleicao(String tp){
+        this.tipoEleicao=tp;
+    }
+    
     public void setParticipante(String part){
         this.participante=part;
+    }
+    
+    public void setVotos(int vt){
+        this.votos=vt;
     }
     
     public void setContador(int cnt){
         this.votos=cnt;
     }
     
+    public void updateVoto(String part){
+        if(part.equals(participante))
+            votos=votos++;
+    }
     
-    
+  public Participante clone(){
+      return new Participante(this);
+  }  
 }
