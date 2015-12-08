@@ -45,4 +45,24 @@ public class Eleicao2 {
             res.put(p.getParticipante(),p.getVotos());
         return res;
     }
+    
+    //Método que devolve o numeor de votos do partido vencedor
+    public int maisVotado(){
+    int res=0;
+    for(Participante p : this.listas.values())
+        if(p.getVotos()>res) res=p.getVotos();
+    return res;
+    }
+    
+    //Método que devolve o partido ou presidente mais votado
+    public String maisVotadoNome(){
+    int res =0;
+    String nome = "";
+        for(Participante p : this.listas.values())
+            if(p.getVotos()>res){
+                res=p.getVotos();
+                nome=p.getParticipante();
+            }
+    return nome;    
+    }
 }
