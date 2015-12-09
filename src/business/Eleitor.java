@@ -5,6 +5,7 @@
  */
 package business;
 
+import java.util.Objects;
 import view.ResgistarEleitor;
 
 /**
@@ -13,94 +14,115 @@ import view.ResgistarEleitor;
  */
 public class Eleitor {
     
-    private String nome, CC, morada, freguesia, P_Nome;
+    private int numEleitor;
+    private String nomeEleitor;
+    private int numCC;
+    private String morada;
+    private String distrito;
     
-    public Eleitor(String nome, String CC, String morada, String freguesia, String P_Nome){
-        this.nome=nome;
-        this.CC=CC;
-        this.morada=morada;
-        this.freguesia=freguesia;
-        this.P_Nome=P_Nome;
-    }
-    
-    public Eleitor(Eleitor re){
-        this.nome=re.getNome();
-        this.CC=re.getCC();
-        this.morada=re.getMorada();
-        this.freguesia=re.getFreguesia();
-        this.P_Nome=re.getP_Nome();
-    }
-  
-    public String getNome(){
-        return this.nome;
-    }
-    public String getCC(){
-        return this.CC;
+    private Eleitor(){
+        this.numEleitor = 0;
+        this.nomeEleitor = "";
+        this.numCC = 0;
+        this.morada = "";
+        this.distrito = "";
     }
 
-    public String getP_Nome() {
-        return P_Nome;
+    public Eleitor(int numEleitor, String nomeEleitor, int numCC, String morada, String distrito) {
+        this.numEleitor = numEleitor;
+        this.nomeEleitor = nomeEleitor;
+        this.numCC = numCC;
+        this.morada = morada;
+        this.distrito = distrito;
+    }
+    
+    public Eleitor(Eleitor e){
+        this.numEleitor = e.getNumEleitor();
+        this.nomeEleitor = e.getNomeEleitor();
+        this.numCC = e.getNumCC();
+        this.morada = e.getMorada();
+        this.distrito = e.getDistrito();
     }
 
-    public void setCC(String CC) {
-        this.CC = CC;
+    public int getNumEleitor() {
+        return numEleitor;
     }
 
-    public void setFreguesia(String freguesia) {
-        this.freguesia = freguesia;
+    public void setNumEleitor(int numEleitor) {
+        this.numEleitor = numEleitor;
     }
 
-    public void setP_Nome(String P_Nome) {
-        this.P_Nome = P_Nome;
+    public String getNomeEleitor() {
+        return nomeEleitor;
     }
+
+    public void setNomeEleitor(String nomeEleitor) {
+        this.nomeEleitor = nomeEleitor;
+    }
+
+    public int getNumCC() {
+        return numCC;
+    }
+
+    public void setNumCC(int numCC) {
+        this.numCC = numCC;
+    }
+
+    public String getMorada() {
+        return morada;
+    }
+
+    public void setMorada(String morada) {
+        this.morada = morada;
+    }
+
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
+
+    @Override
+    public String toString() {
+        return "Eleitor{" + "numEleitor=" + numEleitor + ", nomeEleitor=" + nomeEleitor + ", numCC=" + numCC + ", morada=" + morada + ", distrito=" + distrito + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Eleitor other = (Eleitor) obj;
+        if (this.numEleitor != other.numEleitor) {
+            return false;
+        }
+        if (!Objects.equals(this.nomeEleitor, other.nomeEleitor)) {
+            return false;
+        }
+        if (this.numCC != other.numCC) {
+            return false;
+        }
+        if (!Objects.equals(this.morada, other.morada)) {
+            return false;
+        }
+        if (!Objects.equals(this.distrito, other.distrito)) {
+            return false;
+        }
+        return true;
+    }
+     
     
-    public String getMorada(){
-        return this.morada;
-    }
-    public String getFreguesia(){
-        return this.freguesia;
-    }
-    
-    public void setNome(String nome){
-        this.nome=nome;
-    }
-    public void setNumCidadao(String CC){
-        this.CC=CC;
-    }
-    public void setMorada(String morada){
-        this.morada=morada;
-    }
-    public void SetFreguesia(String freguesia){
-        this.freguesia=freguesia;
-    }
-    
-    public boolean equals(Object o){
-        if (this == o)return true;
-        if((o == null) || (this.getClass() != o.getClass())) return false;
-        Eleitor e = (Eleitor) o;
-        return this.nome.equals(e.getNome()) && 
-               this.CC.equals(e.getCC()) && 
-               this.morada.equals(e.getMorada()) && 
-               this.freguesia.equals(e.getFreguesia());
-    
-    }
-    
-    public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(" Nome:");
-        sb.append(nome);
-        sb.append('\n');
-        sb.append(" Número de Cidadão:");
-        sb.append(CC);
-        sb.append('\n');
-        sb.append(" Morada:");
-        sb.append(morada);
-        sb.append('\n');
-        sb.append(" Freguesia:");
-        sb.append(freguesia);
-        sb.append('\n');
-        return sb.toString();
-    }
     
     
 }

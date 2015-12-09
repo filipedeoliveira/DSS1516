@@ -6,90 +6,101 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
  * @author Filipe Oliveira
  */
 public class Participante {
-    /*
-        PS->50 votos
-        PSD->50 votos
-        BE->20
-        Cavaco -> 30
-    */
-    private String tipoEleicao; //Assembleia ou Presidenciais
-    private String participante; // PSD ou PS ou BE ou CavacoSilva...
-    private int votos; // 50 ou 60...
-    private ArrayList<String> elementos = new ArrayList<String>(); //Elementos da lista
     
-    
+    private int idParticipanete;
+    private String nomeParticipante;
+    private int posicaoParticipante;
+    private int listaIdLista;
+
     public Participante(){
-        this.tipoEleicao="";
-        this.participante="";
-        this.votos=0;
-        this.elementos = new ArrayList<String>();
+        this.idParticipanete = 0;
+        this.nomeParticipante = "";
+        this.posicaoParticipante = 0;
+        this.listaIdLista = 0;
     }
     
-    public Participante (String tipo, String part, int vt, ArrayList<String> ele ){
-        elementos = new ArrayList<String>();
-        this.tipoEleicao=tipo;
-        this.participante=part;
-        this.votos=vt;
-        for(String e : ele)
-            elementos.add(e);
+    public Participante(int idParticipanete, String nomeParticipante, int posicaoParticipante, int listaIdLista) {
+        this.idParticipanete = idParticipanete;
+        this.nomeParticipante = nomeParticipante;
+        this.posicaoParticipante = posicaoParticipante;
+        this.listaIdLista = listaIdLista;
     }
     
-    public Participante(Participante p){
-        this.tipoEleicao=p.getEleicao();
-        this.participante=p.getParticipante();
-        this.votos=p.getVotos();
-        this.elementos=p.getElementos();
+    public Participante(Participante c){
+        this.idParticipanete = c.getIdParticipanete();
+        this.nomeParticipante = c.getNomeParticipante();
+        this.posicaoParticipante = c.getPosicaoParticipante();
+        this.listaIdLista = c.getListaIdLista();
+    }
+
+    public int getIdParticipanete() {
+        return idParticipanete;
+    }
+
+    public void setIdParticipanete(int idParticipanete) {
+        this.idParticipanete = idParticipanete;
+    }
+
+    public String getNomeParticipante() {
+        return nomeParticipante;
+    }
+
+    public void setNomeParticipante(String nomeParticipante) {
+        this.nomeParticipante = nomeParticipante;
+    }
+
+    public int getPosicaoParticipante() {
+        return posicaoParticipante;
+    }
+
+    public void setPosicaoParticipante(int posicaoParticipante) {
+        this.posicaoParticipante = posicaoParticipante;
+    }
+
+    public int getListaIdLista() {
+        return listaIdLista;
+    }
+
+    public void setListaIdLista(int listaIdLista) {
+        this.listaIdLista = listaIdLista;
+    }
+
+    @Override
+    public String toString() {
+        return "Participante{" + "idParticipanete=" + idParticipanete + ", nomeParticipante=" + nomeParticipante + ", posicaoParticipante=" + posicaoParticipante + ", listaIdLista=" + listaIdLista + '}';
+    }
+
+  
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Participante other = (Participante) obj;
+        if (this.idParticipanete != other.idParticipanete) {
+            return false;
+        }
+        if (!Objects.equals(this.nomeParticipante, other.nomeParticipante)) {
+            return false;
+        }
+        if (this.posicaoParticipante != other.posicaoParticipante) {
+            return false;
+        }
+        if (this.listaIdLista != other.listaIdLista) {
+            return false;
+        }
+        return true;
     }
     
     
-    public String getEleicao(){
-        return tipoEleicao;
-    }
-    
-    public String getParticipante(){
-        return this.participante;
-    }
-    
-    public int getVotos(){
-        return this.votos;
-    }
-    
-    public ArrayList<String> getElementos(){
-        ArrayList<String> res = new ArrayList<String>();
-        for(String s : this.elementos)
-            res.add(s);
-        return res;
-    }
-    
-    
-    public void setTipoEleicao(String tp){
-        this.tipoEleicao=tp;
-    }
-    
-    public void setParticipante(String part){
-        this.participante=part;
-    }
-    
-    public void setVotos(int vt){
-        this.votos=vt;
-    }
-    
-    public void setContador(int cnt){
-        this.votos=cnt;
-    }
-    
-    public void updateVoto(String part){
-        if(part.equals(participante))
-            votos=votos++;
-    }
-    
-  public Participante clone(){
-      return new Participante(this);
-  }  
 }

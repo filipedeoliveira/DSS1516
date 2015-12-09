@@ -5,69 +5,76 @@
  */
 package business;
 
-import java.util.ArrayList;
-import java.util.Objects;
+import java.time.LocalDate;
 
 /**
  *
  * @author Filipe Oliveira
  */
 public class Eleicao {
+    
     private String tipoEleicao;
-    private ArrayList<Participante> participantes  = new ArrayList();
-    
-    
-    public Eleicao(){
-        this.tipoEleicao="";
-        this.participantes=new ArrayList<Participante>();
+    private int numeroEleicao;
+    private String estado;
+    private LocalDate dataEncerramento;
+
+    public Eleicao() {
+        this.tipoEleicao = "";
+        this.numeroEleicao = 0;
+        this.estado = "";
+        this.dataEncerramento = null;
     }
 
-    public Eleicao(String tipoEleicao, ArrayList<Participante> part) {
-        participantes = new ArrayList<Participante>();
+    
+    
+    
+    public Eleicao(String tipoEleicao, int numeroEleicao, String estado, LocalDate dataEncerramento) {
         this.tipoEleicao = tipoEleicao;
-        for(Participante p : participantes)
-            participantes.add(p);
+        this.numeroEleicao = numeroEleicao;
+        this.estado = estado;
+        this.dataEncerramento = dataEncerramento;
     }
     
     public Eleicao(Eleicao e){
-        this.tipoEleicao=e.getTipoEleicao();
-        this.participantes=e.getParticipantes();
-    }
+        this.tipoEleicao = e.getTipoEleicao();
+        this.numeroEleicao = e.getNumeroEleicao();
+        this.estado = e.getEstado();
+        this.dataEncerramento = e.getDataEncerramento();
     
+    }
+
     public String getTipoEleicao() {
         return tipoEleicao;
     }
 
-    public ArrayList<Participante> getParticipantes() {
-        ArrayList<Participante> res = participantes;
-        participantes = new ArrayList<Participante>();
-        return res;
+    public int getNumeroEleicao() {
+        return numeroEleicao;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public LocalDate getDataEncerramento() {
+        return dataEncerramento;
     }
 
     public void setTipoEleicao(String tipoEleicao) {
         this.tipoEleicao = tipoEleicao;
     }
 
-    public void setParticipantes(ArrayList<Participante> part) {
-        this.participantes = new ArrayList<Participante>();
-        for (Participante p : part)
-            this.participantes.add(p);
+    public void setNumeroEleicao(int numeroEleicao) {
+        this.numeroEleicao = numeroEleicao;
     }
 
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Eleicao other = (Eleicao) obj;
-        if (!Objects.equals(this.tipoEleicao, other.tipoEleicao)) {
-            return false;
-        }
-        if (!Objects.equals(this.participantes, other.participantes)) {
-            return false;
-        }
-        return true;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
+
+    public void setDataEncerramento(LocalDate dataEncerramento) {
+        this.dataEncerramento = dataEncerramento;
+    }
+    
+    
+    
 }

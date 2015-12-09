@@ -3,17 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/view/ApresentaCandidatura.java</file>
-            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/business/Candidatura.java</file>
-            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/view/ValidaCandidatura.java</file>
+            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/business/Eleicao2.java</file>
             <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/business/Participante.java</file>
-            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/dataacess/EleitorDAO.java</file>
-            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/view/ValidaCandidaturaAssembleia.java</file>
-            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/business/Freguesia.java</file>
-            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/business/Eleitor.java</file>
             <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/business/Eleicao.java</file>
-            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/business/Votar.java</file>
-            <file>file:/C:/Users/Filipe%20Oliveira/Documents/GitHub/DSS1516/src/view/ResgistarEleitor.java</file>
         </group>
     </open-files>
 </project-private>
