@@ -149,14 +149,17 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(numeroEleitor.getText().equals("e123")&& passwordEleitor.getText().equals("1234")){
+        JOptionPane.showMessageDialog(null, "Bem-Vindo");
+            new administrador().setVisible(true);
+            this.dispose();
+        /*if(numeroEleitor.getText().equals("e123")&& passwordEleitor.getText().equals("1234")){
             JOptionPane.showMessageDialog(null, "Bem-Vindo");
             new MenuEleitor().setVisible(true);
             this.dispose();
         }
         else{
             JOptionPane.showMessageDialog(null, "Acesso Negado");
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -197,6 +200,9 @@ public class TelaLogin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

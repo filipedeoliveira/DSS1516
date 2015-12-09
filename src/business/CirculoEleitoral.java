@@ -12,36 +12,29 @@ import java.util.Objects;
  * @author Filipe Oliveira
  */
 public class CirculoEleitoral {
-    private String freguesia;
+    private int idDistrito;
+    private String nome;
 
-    public CirculoEleitoral(String freguesia) {
-        this.freguesia = freguesia;
-    }
-
-    public String getFreguesia() {
-        return freguesia;
+    public CirculoEleitoral(int idDistrito, String nome) {
+        this.idDistrito = idDistrito;
+        this.nome = nome;
     }
 
-    public void setFreguesia(String freguesia) {
-        this.freguesia = freguesia;
+    public int getIdDistrito() {
+        return idDistrito;
+    }
+
+    public void setIdDistrito(int idDistrito) {
+        this.idDistrito = idDistrito;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final CirculoEleitoral other = (CirculoEleitoral) obj;
-        if (!Objects.equals(this.freguesia, other.freguesia)) {
-            return false;
-        }
-        return true;
-    }
-    public String toString() {
-        return "Freguesia{" + "freguesia=" + freguesia + '}';
-    }
-    
-    
+
 }

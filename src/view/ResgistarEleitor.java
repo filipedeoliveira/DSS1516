@@ -172,7 +172,7 @@ public class ResgistarEleitor extends javax.swing.JFrame {
         f = this.jTextField4.getText();
         g = "PS";
         
-        Facade.inserirEleitor(a,s,d,f,g);
+       // Facade.inserirEleitor(a,s,d,f,g);
         
         }                      
         JOptionPane.showMessageDialog(null, "Dados validados!");
