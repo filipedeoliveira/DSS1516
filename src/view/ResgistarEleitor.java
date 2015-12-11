@@ -16,9 +16,11 @@ public class ResgistarEleitor extends javax.swing.JFrame {
 
     /**
      * Creates new form ResgistarEleitor
+     * @param n
      */
     public ResgistarEleitor() {
         initComponents();
+        
     }
 
     /**
@@ -171,13 +173,15 @@ public class ResgistarEleitor extends javax.swing.JFrame {
         d = this.jTextField3.getText();
         f = this.jTextField4.getText();
         g = "PS";
+
+        // Facade.inserirEleitor(a,s,d,f,g);
         
-       // Facade.inserirEleitor(a,s,d,f,g);
+        JOptionPane.showMessageDialog(null, "Dados validados!");
+        new ConfirmaPassword(a).setVisible(true);
+        this.dispose();
         
         }                      
-        JOptionPane.showMessageDialog(null, "Dados validados!");
-        new ConfirmaPassword().setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
