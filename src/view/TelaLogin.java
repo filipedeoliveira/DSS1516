@@ -36,7 +36,7 @@ public class TelaLogin extends javax.swing.JFrame {
         passwordEleitor = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        Visto_Administrador = new javax.swing.JCheckBox();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -67,7 +67,12 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox1.setText("Admin");
+        Visto_Administrador.setText("Admin");
+        Visto_Administrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Visto_AdministradorActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Registar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +95,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
-                            .addComponent(jCheckBox1))
+                            .addComponent(Visto_Administrador))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -109,7 +114,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordEleitor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(Visto_Administrador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -149,17 +154,29 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, "Bem-Vindo");
-            new administrador().setVisible(true);
+
+        if (Visto_Administrador.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Administrador " + numeroEleitor.getText());
+            new Administrador().setVisible(true);
             this.dispose();
-        /*if(numeroEleitor.getText().equals("e123")&& passwordEleitor.getText().equals("1234")){
-            JOptionPane.showMessageDialog(null, "Bem-Vindo");
+        } else {
+            JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Eleitor "+numeroEleitor.getText());
             new MenuEleitor().setVisible(true);
             this.dispose();
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Acesso Negado");
-        }*/
+
+        /*JOptionPane.showMessageDialog(null, "Bem-Vindo");
+         if()
+         new Administrador().setVisible(true);
+         this.dispose();*/
+        /*if(numeroEleitor.getText().equals("e123")&& passwordEleitor.getText().equals("1234")){
+         JOptionPane.showMessageDialog(null, "Bem-Vindo");
+         new MenuEleitor().setVisible(true);
+         this.dispose();
+         }
+         else{
+         JOptionPane.showMessageDialog(null, "Acesso Negado");
+         }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -174,6 +191,11 @@ public class TelaLogin extends javax.swing.JFrame {
         new ResgistarEleitor().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void Visto_AdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Visto_AdministradorActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Visto_AdministradorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,10 +236,10 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox Visto_Administrador;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

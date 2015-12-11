@@ -49,7 +49,6 @@ public class ResultadosAssembleia extends javax.swing.JFrame {
         jProgressBar1.setBackground(new java.awt.Color(255, 204, 102));
         jProgressBar1.setForeground(new java.awt.Color(255, 153, 0));
         jProgressBar1.setValue(37);
-        jProgressBar1.setString("37%");
         jProgressBar1.setStringPainted(true);
 
         jLabel3.setText("PS");
@@ -57,7 +56,6 @@ public class ResultadosAssembleia extends javax.swing.JFrame {
         jProgressBar2.setBackground(new java.awt.Color(255, 102, 255));
         jProgressBar2.setForeground(new java.awt.Color(255, 102, 204));
         jProgressBar2.setValue(26);
-        jProgressBar2.setString("26%");
         jProgressBar2.setStringPainted(true);
 
         jLabel4.setText("BE");
@@ -68,6 +66,11 @@ public class ResultadosAssembleia extends javax.swing.JFrame {
         jProgressBar3.setStringPainted(true);
 
         jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("PDR");
 
@@ -153,6 +156,12 @@ public class ResultadosAssembleia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    System.exit(0);
+    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

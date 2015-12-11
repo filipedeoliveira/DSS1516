@@ -53,6 +53,11 @@ public class Freguesias extends javax.swing.JFrame {
         jButton4.setText("Retroceder");
 
         jButton5.setText("Sair");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Freguesias");
 
@@ -122,6 +127,11 @@ public class Freguesias extends javax.swing.JFrame {
             new CriarFreguesia().setVisible(true);
             this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       System.exit(0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
