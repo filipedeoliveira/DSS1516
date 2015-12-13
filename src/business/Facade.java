@@ -6,7 +6,9 @@
 package business;
 
 import dataacess.CirculoEleitoralDAO;
+import dataacess.EleicaoDAO;
 import exceptions.ExisteOuNaoExisteException;
+import java.time.LocalDate;
 
 /**
  *
@@ -33,10 +35,21 @@ public class Facade {
         int i = 1;
         CirculoEleitoral ce = new CirculoEleitoral(i,text);
         dao.put(ce);
-        System.out.println("prima");
         }
         catch (Exception ex){ex.printStackTrace();}
     }
+    
+    
+    public static void criaEleicao (String tipo, int codigo, String estado, int year){
+        try{
+        EleicaoDAO dao = new EleicaoDAO();
+        Eleicao e = new Eleicao(tipo, codigo, estado, year);
+        dao.put(e);
+        System.out.println("a tua pr333ima");
+        }
+        catch (Exception ec){ec.printStackTrace();}
+    
+    }  
     
 
 }

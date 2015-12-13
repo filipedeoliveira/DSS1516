@@ -12,12 +12,20 @@ import javax.swing.JOptionPane;
  * @author Filipe Oliveira
  */
 public class ConfirmaPassword extends javax.swing.JFrame {
+    private final ResgistarEleitor ResgistarEleitor;
+    private boolean n;
 
     /**
      * Creates new form ConfirmaPassword
+     * @param n
      */
-    public ConfirmaPassword() {
+    public ConfirmaPassword(ResgistarEleitor n) {
         initComponents();
+        this.ResgistarEleitor = n;
+    }
+
+    ConfirmaPassword(String a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -122,7 +130,7 @@ public class ConfirmaPassword extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Criada com Sucesso");
             new TelaLogin().setVisible(true);
             this.dispose();
-            
+            System.out.println(n);
         }
         else{
             JOptionPane.showMessageDialog(null, "As Passwords não coincidem");
@@ -157,11 +165,7 @@ public class ConfirmaPassword extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConfirmaPassword().setVisible(true);
-            }
-        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

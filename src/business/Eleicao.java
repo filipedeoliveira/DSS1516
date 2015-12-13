@@ -16,19 +16,19 @@ public class Eleicao {
     private String tipoEleicao;
     private int numeroEleicao;
     private String estado;
-    private LocalDate dataEncerramento;
+    private int dataEncerramento;
 
     public Eleicao() {
         this.tipoEleicao = "";
         this.numeroEleicao = 0;
         this.estado = "";
-        this.dataEncerramento = null;
+        this.dataEncerramento = 0;
     }
 
     
     
     
-    public Eleicao(String tipoEleicao, int numeroEleicao, String estado, LocalDate dataEncerramento) {
+    public Eleicao(String tipoEleicao, int numeroEleicao, String estado, int dataEncerramento) {
         this.tipoEleicao = tipoEleicao;
         this.numeroEleicao = numeroEleicao;
         this.estado = estado;
@@ -55,7 +55,7 @@ public class Eleicao {
         return estado;
     }
 
-    public LocalDate getDataEncerramento() {
+    public int getDataEncerramento() {
         return dataEncerramento;
     }
 
@@ -71,7 +71,7 @@ public class Eleicao {
         this.estado = estado;
     }
 
-    public void setDataEncerramento(LocalDate dataEncerramento) {
+    public void setDataEncerramento(int dataEncerramento) {
         this.dataEncerramento = dataEncerramento;
     }
     
