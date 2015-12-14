@@ -13,39 +13,39 @@ import java.util.Objects;
  * @author Filipe Oliveira
  */
 public class Participante {
-    
-    private int idParticipanete;
+
+    private int idParticipante;
     private String nomeParticipante;
     private int posicaoParticipante;
     private int listaIdLista;
 
-    public Participante(){
-        this.idParticipanete = 0;
+    public Participante() {
+        this.idParticipante = 0;
         this.nomeParticipante = "";
         this.posicaoParticipante = 0;
         this.listaIdLista = 0;
     }
-    
+
     public Participante(int idParticipanete, String nomeParticipante, int posicaoParticipante, int listaIdLista) {
-        this.idParticipanete = idParticipanete;
+        this.idParticipante = idParticipanete;
         this.nomeParticipante = nomeParticipante;
         this.posicaoParticipante = posicaoParticipante;
         this.listaIdLista = listaIdLista;
     }
-    
-    public Participante(Participante c){
-        this.idParticipanete = c.getIdParticipanete();
+
+    public Participante(Participante c) {
+        this.idParticipante = c.getIdParticipante();
         this.nomeParticipante = c.getNomeParticipante();
         this.posicaoParticipante = c.getPosicaoParticipante();
         this.listaIdLista = c.getListaIdLista();
     }
 
-    public int getIdParticipanete() {
-        return idParticipanete;
+    public int getIdParticipante() {
+        return idParticipante;
     }
 
     public void setIdParticipanete(int idParticipanete) {
-        this.idParticipanete = idParticipanete;
+        this.idParticipante = idParticipanete;
     }
 
     public String getNomeParticipante() {
@@ -74,10 +74,9 @@ public class Participante {
 
     @Override
     public String toString() {
-        return "Participante{" + "idParticipanete=" + idParticipanete + ", nomeParticipante=" + nomeParticipante + ", posicaoParticipante=" + posicaoParticipante + ", listaIdLista=" + listaIdLista + '}';
+        return "Participante{" + "idParticipanete=" + idParticipante + ", nomeParticipante=" + nomeParticipante + ", posicaoParticipante=" + posicaoParticipante + ", listaIdLista=" + listaIdLista + '}';
     }
 
-  
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -87,7 +86,7 @@ public class Participante {
             return false;
         }
         final Participante other = (Participante) obj;
-        if (this.idParticipanete != other.idParticipanete) {
+        if (this.idParticipante != other.idParticipante) {
             return false;
         }
         if (!Objects.equals(this.nomeParticipante, other.nomeParticipante)) {
@@ -101,6 +100,5 @@ public class Participante {
         }
         return true;
     }
-    
-    
+
 }
