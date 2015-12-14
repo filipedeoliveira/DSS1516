@@ -12,29 +12,31 @@ import java.util.Objects;
  * @author Filipe Oliveira
  */
 public class Lista {
-    
+
     private int idLista;
     private String tipoLista;
     private String nomeLista;
     private int numEleicaoParticipa;
 
-    public Lista(){
+    public Lista() {
         this.idLista = 0;
         this.tipoLista = "";
         this.nomeLista = "";
         this.numEleicaoParticipa = 0;
     }
+
     public Lista(int idLista, String tipoLista, String nomeLista, int numEleicaoParticipa) {
         this.idLista = idLista;
         this.tipoLista = tipoLista;
         this.nomeLista = nomeLista;
         this.numEleicaoParticipa = numEleicaoParticipa;
     }
-    public Lista(Lista l){
+
+    public Lista(Lista l) {
         this.idLista = l.getIdLista();
         this.tipoLista = l.getTipoLista();
         this.nomeLista = l.getNomeLista();
-        this.numEleicaoParticipa = l.getNumEleicaoParticipa(); 
+        this.numEleicaoParticipa = l.getNumEleicaoParticipa();
     }
 
     public int getIdLista() {
@@ -103,8 +105,5 @@ public class Lista {
     public String toString() {
         return "Lista{" + "idLista=" + idLista + ", tipoLista=" + tipoLista + ", nomeLista=" + nomeLista + ", numEleicaoParticipa=" + numEleicaoParticipa + '}';
     }
-    
-    
-    
-    
+
 }

@@ -5,8 +5,7 @@
  */
 package dataacess;
 
-import business.CirculoEleitoral;
-import business.Eleitor;
+import business.Lista;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,25 +15,25 @@ import java.sql.Statement;
  *
  * @author Filipe Oliveira
  */
-public class CirculoEleitoralDAO {
+public class ListaDAO {
 
     private Connection conn;
 
-    public CirculoEleitoralDAO() {
+    public ListaDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException l) {
+            l.printStackTrace();
         }
     }
 
-    public CirculoEleitoral put(CirculoEleitoral value) throws SQLException {
-        CirculoEleitoral ce1 = null;
+    public Lista put(Lista value) throws SQLException {
+        Lista l = null;
         Statement stm = conn.createStatement();
-        String sql = "INSERT INTO distrito (idDISTRITO, nome)  VALUES (\"" + value.getIdDistrito() + "\", \"" + value.getNome() + "\");";
+        String sql = "INSERT INTO lista (idLista, nomeLista, tipo, numEleicaoParticipa) VALUES (\"" + value.getIdLista() + "\",\"" + value.getNomeLista() + "\",\"" + value.getTipoLista() + "\",\"" + value.getNumEleicaoParticipa() + "\");";
         int i = stm.executeUpdate(sql);
-        return new CirculoEleitoral(value.getIdDistrito(), value.getNome());
+        return new Lista();
 
     }
 

@@ -28,7 +28,7 @@ public class EleitorDAO {
         }
     }
     
-     public Eleitor put (Eleitor value) throws SQLException{
+     /*public Eleitor put (Eleitor value) throws SQLException{
         Eleitor e = null;
         Statement stm = conn.createStatement();
         String sql = "INSERT INTO eleicao (numEleitor,nomeEleitor,numCC,morada,distrito) VALUES (\""+value.getNumEleitor()+"\",\""+value.getNomeEleitor()+"\",\""+value.getNumCC()+"\",\""+value.getMorada()+"\",\""+value.getDistrito()+"\");";
@@ -36,5 +36,5 @@ public class EleitorDAO {
         System.out.println("a tua prima2");
         return new Eleitor();
     
-    }    
+    } */   
 }
