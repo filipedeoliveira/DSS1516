@@ -74,7 +74,7 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
             Statement stm = conn.createStatement();
             ResultSet i = stm.executeQuery("SELECT * FROM DISTRITO");
             for (; i.next(); contador++);
-            System.out.println(contador);
+            //System.out.println(contador);
             return contador;
 
         } catch (Exception e) {
@@ -100,6 +100,16 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
             String sql = "SELECT * FROM distrito WHERE id='" + (String) key + "'";
             ResultSet rs = stm.executeQuery(sql);
             return rs.next();
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+    }
+
+    public boolean existeCirculoEleitoral(String ce) {
+        try {
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM distrito WHERE nome = '" + ce + "';");
+            return (rs.next());
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
         }
