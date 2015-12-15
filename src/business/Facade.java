@@ -31,7 +31,7 @@ public class Facade {
         try {
             CirculoEleitoralDAO dao = new CirculoEleitoralDAO();
             CirculoEleitoral ce = new CirculoEleitoral(text);
-            dao.put(ce);
+            dao.put(ce.getNome(), ce);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

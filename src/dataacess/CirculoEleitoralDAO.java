@@ -9,10 +9,12 @@ import business.CirculoEleitoral;
 import business.Eleitor;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -34,11 +36,14 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
         }
     }
 
-    public CirculoEleitoral put(CirculoEleitoral value) throws SQLException {
+    public CirculoEleitoral put(String nome, CirculoEleitoral value) {
         CirculoEleitoral ce1 = null;
-        Statement stm = conn.createStatement();
-        String sql = "INSERT INTO distrito (nome)  VALUES (\"" + value.getNome() + "\");";
-        int i = stm.executeUpdate(sql);
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "INSERT INTO distrito (nome)  VALUES (\"" + value.getNome() + "\");";
+            int i = stm.executeUpdate(sql);
+        } catch (Exception e) {
+        }
         return new CirculoEleitoral(value.getNome());
 
     }
@@ -115,6 +120,10 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
         }
     }
 
+    public int hashCode() {
+        return this.conn.hashCode();
+    }
+
     @Override
     public boolean containsValue(Object value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -122,11 +131,6 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
 
     @Override
     public CirculoEleitoral get(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public CirculoEleitoral put(String key, CirculoEleitoral value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -142,7 +146,18 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
 
     @Override
     public Collection<CirculoEleitoral> values() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Collection<CirculoEleitoral> col = new HashSet<CirculoEleitoral>();
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FORM Distrito");
+            for (; rs.next();) {
+                col.add(new CirculoEleitoral(rs.getString(1)));
+            }
+            return col;
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+
     }
 
     @Override
