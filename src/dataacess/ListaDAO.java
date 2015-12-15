@@ -31,7 +31,7 @@ public class ListaDAO {
     public Lista put(Lista value) throws SQLException {
         Lista l = null;
         Statement stm = conn.createStatement();
-        String sql = "INSERT INTO lista (idLista, nomeLista, tipo, numEleicaoParticipa) VALUES (\"" + value.getIdLista() + "\",\"" + value.getNomeLista() + "\",\"" + value.getTipoLista() + "\",\"" + value.getNumEleicaoParticipa() + "\");";
+        String sql = "INSERT INTO lista (idLista, nomeLista, tipo, Eleicao_nEleicao) VALUES (\"" + value.getIdLista() + "\",\"" + value.getNomeLista() + "\",\"" + value.getTipoLista() + "\",\"" + value.getNumEleicaoParticipa() + "\");";
         int i = stm.executeUpdate(sql);
         return new Lista();
 

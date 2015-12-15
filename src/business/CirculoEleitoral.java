@@ -12,12 +12,12 @@ import java.util.Objects;
  * @author Filipe Oliveira
  */
 public class CirculoEleitoral {
+
     private String nome;
 
     public CirculoEleitoral(String nome) {
         this.nome = nome;
     }
-
 
     public String getNome() {
         return nome;
@@ -26,6 +26,5 @@ public class CirculoEleitoral {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
 
 }
