@@ -9,17 +9,19 @@ import business.CirculoEleitoral;
 import business.Eleitor;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 /**
  *
  * @author Filipe Oliveira
  */
-public class CirculoEleitoralDAO  implements Map<String,CirculoEleitoral> {
+public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
 
     private Connection conn;
 
@@ -51,28 +53,44 @@ public class CirculoEleitoralDAO  implements Map<String,CirculoEleitoral> {
         }
     }
 
-    public CirculoEleitoral remove(Object key){
-        try
-        {
+    public CirculoEleitoral remove(Object key) {
+        try {
             CirculoEleitoral ce = null;
             Statement stm = conn.createStatement();
-            String sql = "DELETE FROM distrito WHERE nome = '"+key+"' ;";
+            String sql = "DELETE FROM distrito WHERE nome = '" + key + "' ;";
             boolean it = stm.execute(sql);
-            return new CirculoEleitoral ((String) key);
+            return new CirculoEleitoral((String) key);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
         }
-        catch (Exception e) {e.printStackTrace();throw new NullPointerException(e.getMessage());
-        }
-        
+
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            int contador = 0;
+            Statement stm = conn.createStatement();
+            ResultSet i = stm.executeQuery("SELECT * FROM DISTRITO");
+            for (; i.next(); contador++);
+            System.out.println(contador);
+            return contador;
+
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage()); //To change body of generated methods, choose Tools | Templates.
+        }
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * From DISTRITO");
+            return !rs.next();
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage()); 
+        }
     }
 
     @Override
@@ -94,7 +112,6 @@ public class CirculoEleitoralDAO  implements Map<String,CirculoEleitoral> {
     public CirculoEleitoral put(String key, CirculoEleitoral value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
     @Override
     public void putAll(Map<? extends String, ? extends CirculoEleitoral> m) {
