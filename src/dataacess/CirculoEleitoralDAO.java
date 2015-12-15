@@ -89,13 +89,20 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
             ResultSet rs = stm.executeQuery("SELECT * From DISTRITO");
             return !rs.next();
         } catch (Exception e) {
-            throw new NullPointerException(e.getMessage()); 
+            throw new NullPointerException(e.getMessage());
         }
     }
 
     @Override
     public boolean containsKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM distrito WHERE id='" + (String) key + "'";
+            ResultSet rs = stm.executeQuery(sql);
+            return rs.next();
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
     }
 
     @Override
