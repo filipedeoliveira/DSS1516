@@ -28,13 +28,14 @@ public class ResultadosDAO {
             r.printStackTrace();
         }
     }
-     public Resultados put (Resultados value) throws SQLException{
+
+    public Resultados put(Resultados value) throws SQLException {
         Resultados e = null;
         Statement stm = conn.createStatement();
-        String sql = "INSERT INTO resultados (idResultados, participantes) VALUES (\""+value.getIdResultados()+"\",\""+value.getParticipante()+"\");";
+        String sql = "INSERT INTO resultados (idResultados, participantes) VALUES (\"" + value.getIdResultados() + "\",\"" + value.getParticipante() + "\");";
         int i = stm.executeUpdate(sql);
         return new Resultados();
-    
-    } 
+
+    }
 
 }
