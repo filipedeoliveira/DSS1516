@@ -11,12 +11,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
  * @author Filipe Oliveira
  */
-public class CirculoEleitoralDAO {
+public class CirculoEleitoralDAO  implements Map<String,CirculoEleitoral> {
 
     private Connection conn;
 
@@ -32,10 +35,85 @@ public class CirculoEleitoralDAO {
     public CirculoEleitoral put(CirculoEleitoral value) throws SQLException {
         CirculoEleitoral ce1 = null;
         Statement stm = conn.createStatement();
-        String sql = "INSERT INTO distrito (idDISTRITO, nome)  VALUES (\"" + value.getIdDistrito() + "\", \"" + value.getNome() + "\");";
+        String sql = "INSERT INTO distrito (nome)  VALUES (\"" + value.getNome() + "\");";
         int i = stm.executeUpdate(sql);
-        return new CirculoEleitoral(value.getIdDistrito(), value.getNome());
+        return new CirculoEleitoral(value.getNome());
 
+    }
+
+    public void clear() {
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "DELETE FROM distrito;";
+            int i = stm.executeUpdate(sql);
+
+        } catch (Exception e) {
+        }
+    }
+
+    public CirculoEleitoral remove(Object key){
+        try
+        {
+            CirculoEleitoral ce = null;
+            Statement stm = conn.createStatement();
+            String sql = "DELETE FROM distrito WHERE nome = '"+key+"' ;";
+            boolean it = stm.execute(sql);
+            return new CirculoEleitoral ((String) key);
+        }
+        catch (Exception e) {e.printStackTrace();throw new NullPointerException(e.getMessage());
+        }
+        
+    }
+
+    @Override
+    public int size() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isEmpty() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean containsKey(Object key) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean containsValue(Object value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CirculoEleitoral get(Object key) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CirculoEleitoral put(String key, CirculoEleitoral value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    @Override
+    public void putAll(Map<? extends String, ? extends CirculoEleitoral> m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<String> keySet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Collection<CirculoEleitoral> values() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<Entry<String, CirculoEleitoral>> entrySet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

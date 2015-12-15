@@ -131,6 +131,7 @@ public class ConfirmaPassword extends javax.swing.JFrame {
             new TelaLogin().setVisible(true);
             this.dispose();
             System.out.println(n);
+            System.out.println("nigga");
         }
         else{
             JOptionPane.showMessageDialog(null, "As Passwords não coincidem");

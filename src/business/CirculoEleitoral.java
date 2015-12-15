@@ -12,21 +12,12 @@ import java.util.Objects;
  * @author Filipe Oliveira
  */
 public class CirculoEleitoral {
-    private int idDistrito;
     private String nome;
 
-    public CirculoEleitoral(int idDistrito, String nome) {
-        this.idDistrito = idDistrito;
+    public CirculoEleitoral(String nome) {
         this.nome = nome;
     }
 
-    public int getIdDistrito() {
-        return idDistrito;
-    }
-
-    public void setIdDistrito(int idDistrito) {
-        this.idDistrito = idDistrito;
-    }
 
     public String getNome() {
         return nome;

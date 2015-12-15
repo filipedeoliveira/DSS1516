@@ -114,7 +114,7 @@ public class CriarFreguesia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Facade.criaFreguesia(freguesia.getText());
+        Facade.inserirCirculoEleitoral(freguesia.getText());
         new Freguesias().setVisible(true);
             this.dispose();
         System.out.println("wow??");

@@ -27,15 +27,21 @@ public class Facade {
      System.out.println("sql exception");
      }
      }*/
-    public static void criaFreguesia(String text) {
+    public static void inserirCirculoEleitoral(String text) {
         try {
             CirculoEleitoralDAO dao = new CirculoEleitoralDAO();
-            int i = 1;
-            CirculoEleitoral ce = new CirculoEleitoral(i, text);
+            CirculoEleitoral ce = new CirculoEleitoral(text);
             dao.put(ce);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public static void removerCirculoEleitoral(String text){
+        try{
+            new CirculoEleitoralDAO().remove(text);
+            
+        }   catch (Exception ex){}
     }
 
     public static void criaEleicao(String tipo, int codigo, String estado, int year) {
