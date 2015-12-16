@@ -7,6 +7,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import business.Eleitor;
+import business.Facade;
 
 /**
  *
@@ -132,6 +133,7 @@ public class ConfirmaPassword extends javax.swing.JFrame {
             this.dispose();
             System.out.println( n.getNumEleitor());
             System.out.println("nigga");
+            Facade.inserirPass(novaPassword.getText(), n.getNumCC());
         }
         else{
             JOptionPane.showMessageDialog(null, "As Passwords não coincidem");

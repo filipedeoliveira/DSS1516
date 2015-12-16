@@ -70,7 +70,7 @@ public class ResgistarEleitor extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Freguesia ");
+        jLabel5.setText("Distrito");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +144,7 @@ public class ResgistarEleitor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 2, Short.MAX_VALUE)
+                .addGap(0, 18, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -173,11 +173,12 @@ public class ResgistarEleitor extends javax.swing.JFrame {
         s = this.jTextField2.getText();
         d = this.jTextField3.getText();
         f = this.jTextField4.getText();
-        g = "PS";
+        
         int numero = Integer.parseInt(s);
-        Eleitor e = new Eleitor(67686,a,numero,d,f);
+        int idDistrito = 12; //alterar para uma função
+        Eleitor e = new Eleitor(67686,a,numero,d,12);
 
-        // Facade.inserirEleitor(a,s,d,f,g);
+        Facade.inserirEleitor(67686,a,numero,d,12);
         
         JOptionPane.showMessageDialog(null, "Dados validados!");
         new ConfirmaPassword(e).setVisible(true);

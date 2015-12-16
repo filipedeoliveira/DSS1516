@@ -18,22 +18,22 @@ public class Eleitor {
     private String nomeEleitor;
     private int numCC;
     private String morada;
-    private String distrito;
+    private int idDistrito;
     
     private Eleitor(){
         this.numEleitor = 0;
         this.nomeEleitor = "";
         this.numCC = 0;
         this.morada = "";
-        this.distrito = "";
+        this.idDistrito = 0;
     }
 
-    public Eleitor(int numEleitor, String nomeEleitor, int numCC, String morada, String distrito) {
+    public Eleitor(int numEleitor, String nomeEleitor, int numCC, String morada, int idDistrito) {
         this.numEleitor = numEleitor;
         this.nomeEleitor = nomeEleitor;
         this.numCC = numCC;
         this.morada = morada;
-        this.distrito = distrito;
+        this.idDistrito = idDistrito;
     }
     
     public Eleitor(Eleitor e){
@@ -41,7 +41,7 @@ public class Eleitor {
         this.nomeEleitor = e.getNomeEleitor();
         this.numCC = e.getNumCC();
         this.morada = e.getMorada();
-        this.distrito = e.getDistrito();
+        this.idDistrito = e.getidDistrito();
     }
 
     public int getNumEleitor() {
@@ -76,17 +76,17 @@ public class Eleitor {
         this.morada = morada;
     }
 
-    public String getDistrito() {
-        return distrito;
+    public int getidDistrito() {
+        return idDistrito;
     }
 
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
+    public void setidDistrito(int idDistrito) {
+        this.idDistrito = idDistrito;
     }
 
     @Override
     public String toString() {
-        return "Eleitor{" + "numEleitor=" + numEleitor + ", nomeEleitor=" + nomeEleitor + ", numCC=" + numCC + ", morada=" + morada + ", distrito=" + distrito + '}';
+        return "Eleitor{" + "numEleitor=" + numEleitor + ", nomeEleitor=" + nomeEleitor + ", numCC=" + numCC + ", morada=" + morada + ", idDistrito=" + idDistrito + '}';
     }
 
     @Override
@@ -116,7 +116,7 @@ public class Eleitor {
         if (!Objects.equals(this.morada, other.morada)) {
             return false;
         }
-        if (!Objects.equals(this.distrito, other.distrito)) {
+        if (!Objects.equals(this.idDistrito, other.idDistrito)) {
             return false;
         }
         return true;

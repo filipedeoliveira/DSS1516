@@ -8,6 +8,7 @@ package dataacess;
 import business.Eleitor;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -28,13 +29,22 @@ public class EleitorDAO {
         }
     }
     
-     /*public Eleitor put (Eleitor value) throws SQLException{
+    public String inserirPass(String pass, int cc) throws SQLException{
+        Statement stm = conn.createStatement();
+        String sql = "UPDATE ELEITOR SET password = '"+(String) pass+"' where numCC = "+(int) cc+";";
+        //String sql = "UPDATE eleitor SET password= "+pass+" WHERE numCC= "+cc+";";
+        int i = stm.executeUpdate(sql);
+        return pass;
+    }
+
+    public Eleitor put(Eleitor value) throws SQLException {
         Eleitor e = null;
         Statement stm = conn.createStatement();
-        String sql = "INSERT INTO eleicao (numEleitor,nomeEleitor,numCC,morada,distrito) VALUES (\""+value.getNumEleitor()+"\",\""+value.getNomeEleitor()+"\",\""+value.getNumCC()+"\",\""+value.getMorada()+"\",\""+value.getDistrito()+"\");";
+        String sql = "INSERT INTO eleitor (nome, numCC, morada, Distrito_idDistrito) VALUES (\"" + value.getNomeEleitor() + "\",\"" + value.getNumCC() + "\",\"" + value.getMorada() + "\",\"" + value.getidDistrito() + "\");";
         int i = stm.executeUpdate(sql);
         System.out.println("a tua prima2");
-        return new Eleitor();
-    
-    } */   
+        return new Eleitor(value.getNumEleitor(), value.getNomeEleitor(), value.getNumCC(),value.getMorada(), value.getidDistrito());
+
+    }
 }
+

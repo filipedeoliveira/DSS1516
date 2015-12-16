@@ -7,6 +7,7 @@ package business;
 
 import dataacess.CirculoEleitoralDAO;
 import dataacess.EleicaoDAO;
+import dataacess.EleitorDAO;
 import exceptions.ExisteOuNaoExisteException;
 import java.time.LocalDate;
 
@@ -15,18 +16,29 @@ import java.time.LocalDate;
  * @author Filipe Oliveira
  */
 public class Facade {
+    
+    public static void inserirPass(String pass, int cc){
+    try{
+        EleitorDAO dao = new EleitorDAO();
+        dao.inserirPass(pass, cc);
+        
+    }
+    catch (Exception e){e.printStackTrace();}
+    
+    }
 
-    /*public static void inserirEleitor(String nome, String CC, String morada, String freguesia, String P_Nome){
+    public static void inserirEleitor(int num, String nome, int cc, String morada, int idDistrito){
      try{
      EleitorDAO dao = new EleitorDAO();
-     Eleitor e = new Eleitor(nome,CC,morada,freguesia,P_Nome);
+     Eleitor e = new Eleitor(num, nome, cc, morada, idDistrito);
      dao.put(e);
      }
      catch(Exception ex){
      ex.printStackTrace();
      System.out.println("sql exception");
      }
-     }*/
+     }
+    
     public static void inserirCirculoEleitoral(String text) {
         try {
             CirculoEleitoralDAO dao = new CirculoEleitoralDAO();
