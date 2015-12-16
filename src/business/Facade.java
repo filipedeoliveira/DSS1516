@@ -30,7 +30,7 @@ public class Facade {
     public static void inserirCirculoEleitoral(String text) {
         try {
             CirculoEleitoralDAO dao = new CirculoEleitoralDAO();
-            CirculoEleitoral ce = new CirculoEleitoral(text);
+            CirculoEleitoral ce = new CirculoEleitoral(3333333,text);
             dao.put(ce.getNome(), ce);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -39,9 +39,10 @@ public class Facade {
     
     public static void removerCirculoEleitoral(String text){
         try{
-            new CirculoEleitoralDAO().remove(text);
+            CirculoEleitoralDAO dao = new CirculoEleitoralDAO();
+            dao.remove(text);
             
-        }   catch (Exception ex){}
+        }   catch (Exception ex){ex.printStackTrace();}
     }
 
     public static void criaEleicao(String tipo, int codigo, String estado, int year) {

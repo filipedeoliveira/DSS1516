@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -99,11 +100,31 @@ public class ResultadosDAO implements Map<String, Resultados> {
 
     @Override
     public Resultados get(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Resultados res = null;
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Resultados WHERE id='" + (String) key + "'";
+            ResultSet rs = stm.executeQuery(sql);
+            if (rs.next()) {
+                res = new Resultados(rs.getInt(1), rs.getString(2));
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
     }
 
     @Override
     public Resultados remove(Object par) {
+        
+        /**
+         *  Resultados ce = this.get(key);
+            Statement stm = conn.createStatement();
+            String sql = "DELETE '"+key+"' FROM Resultados";
+            int i  = stm.executeUpdate(sql);
+            return ce;
+         * */
+        
         try {
             Resultados r = null;
             Statement stm = conn.createStatement();
@@ -140,12 +161,26 @@ public class ResultadosDAO implements Map<String, Resultados> {
 
     @Override
     public Collection<Resultados> values() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Collection<Resultados> res = new HashSet<Resultados>();
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FORM Resultados");
+            for (; rs.next();) {
+                res.add(new Resultados(rs.getInt(1), rs.getString(2)));
+            }
+            return res;
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
     }
 
     @Override
     public Set<Entry<String, Resultados>> entrySet() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int hashCode() {
+        return this.conn.hashCode();
     }
 
 }
