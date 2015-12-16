@@ -6,22 +6,22 @@
 package view;
 
 import javax.swing.JOptionPane;
+import business.Eleitor;
 
 /**
  *
  * @author Filipe Oliveira
  */
 public class ConfirmaPassword extends javax.swing.JFrame {
-    private final ResgistarEleitor ResgistarEleitor;
-    private boolean n;
+    private Eleitor n;
 
     /**
      * Creates new form ConfirmaPassword
      * @param n
      */
-    public ConfirmaPassword(ResgistarEleitor n) {
+    public ConfirmaPassword(Eleitor n) {
         initComponents();
-        this.ResgistarEleitor = n;
+        this.n = n;
     }
 
     ConfirmaPassword(String a) {
@@ -130,7 +130,7 @@ public class ConfirmaPassword extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Criada com Sucesso");
             new TelaLogin().setVisible(true);
             this.dispose();
-            System.out.println(n);
+            System.out.println( n.getNumEleitor());
             System.out.println("nigga");
         }
         else{

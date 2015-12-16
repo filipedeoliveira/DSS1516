@@ -6,6 +6,7 @@
 package view;
 
 import business.Facade;
+import business.Eleitor;
 import javax.swing.JOptionPane;
 
 /**
@@ -173,11 +174,13 @@ public class ResgistarEleitor extends javax.swing.JFrame {
         d = this.jTextField3.getText();
         f = this.jTextField4.getText();
         g = "PS";
+        int numero = Integer.parseInt(s);
+        Eleitor e = new Eleitor(67686,a,numero,d,f);
 
         // Facade.inserirEleitor(a,s,d,f,g);
         
         JOptionPane.showMessageDialog(null, "Dados validados!");
-        new ConfirmaPassword(a).setVisible(true);
+        new ConfirmaPassword(e).setVisible(true);
         this.dispose();
         
         }                      
