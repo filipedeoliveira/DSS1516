@@ -6,7 +6,7 @@
 package view;
 
 import business.Facade;
-import java.time.LocalDate;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -52,6 +52,11 @@ public class CriarEleicao extends javax.swing.JFrame {
         });
 
         jButton2.setText("Retroceder");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Introduza um código");
 
@@ -132,18 +137,22 @@ public class CriarEleicao extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int codigoINT = Integer.parseInt(codigo.getText());
         String tipo, estado;
-        LocalDate DATA = LocalDate.now();
+        GregorianCalendar date = new GregorianCalendar();
         
         if (codigoINT >= 5000){
             tipo = "Assembleia";
             estado = "Decorrer";
-            int i = DATA.getYear();
-            Facade.criaEleicao(tipo, codigoINT, estado, i);
+            //int i = date.getWeekYear();
+            Facade.criaEleicao(tipo, codigoINT, estado, date);
             System.out.println("a tua prima");
         
         }
         else System.out.println("atuaprimafailed");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
