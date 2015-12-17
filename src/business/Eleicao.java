@@ -5,7 +5,7 @@
  */
 package business;
 
-import java.time.LocalDate;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -16,23 +16,23 @@ public class Eleicao {
     private String tipoEleicao;
     private int numeroEleicao;
     private String estado;
-    private int dataEncerramento;
+    private GregorianCalendar dataEncerramento;
 
     public Eleicao() {
         this.tipoEleicao = "";
         this.numeroEleicao = 0;
         this.estado = "";
-        this.dataEncerramento = 0;
+        this.dataEncerramento = new GregorianCalendar();
     }
 
     
     
     
-    public Eleicao(String tipoEleicao, int numeroEleicao, String estado, int dataEncerramento) {
+    public Eleicao(String tipoEleicao, int numeroEleicao, String estado, GregorianCalendar data) {
         this.tipoEleicao = tipoEleicao;
         this.numeroEleicao = numeroEleicao;
         this.estado = estado;
-        this.dataEncerramento = dataEncerramento;
+        this.dataEncerramento = data;
     }
     
     public Eleicao(Eleicao e){
@@ -55,7 +55,7 @@ public class Eleicao {
         return estado;
     }
 
-    public int getDataEncerramento() {
+    public GregorianCalendar getDataEncerramento() {
         return dataEncerramento;
     }
 
@@ -71,7 +71,7 @@ public class Eleicao {
         this.estado = estado;
     }
 
-    public void setDataEncerramento(int dataEncerramento) {
+    public void setDataEncerramento(GregorianCalendar dataEncerramento) {
         this.dataEncerramento = dataEncerramento;
     }
     

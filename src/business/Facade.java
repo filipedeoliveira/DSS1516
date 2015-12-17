@@ -9,7 +9,7 @@ import dataacess.CirculoEleitoralDAO;
 import dataacess.EleicaoDAO;
 import dataacess.EleitorDAO;
 import exceptions.ExisteOuNaoExisteException;
-import java.time.LocalDate;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -59,7 +59,7 @@ public class Facade {
         }
     }
 
-    public static void criaEleicao(String tipo, int codigo, String estado, int year) {
+    public static void criaEleicao(String tipo, int codigo, String estado, GregorianCalendar year) {
         try {
             EleicaoDAO dao = new EleicaoDAO();
             Eleicao e = new Eleicao(tipo, codigo, estado, year);
