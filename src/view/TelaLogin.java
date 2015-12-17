@@ -174,7 +174,8 @@ public class TelaLogin extends javax.swing.JFrame {
         //if (numeroEleitor.getText().equals("e123") && passwordEleitor.getText().equals("1234")) {
         String s = numeroEleitor.getText();
         int foo = Integer.parseInt(s);
-        if(Facade.testaLogin(foo)){
+        String pass = passwordEleitor.getText();
+        if(Facade.testaLogin(foo)&&Facade.testaPass(foo, pass)){
             JOptionPane.showMessageDialog(null, "Bem-Vindo");
             new MenuEleitor().setVisible(true);
             this.dispose();

@@ -83,4 +83,17 @@ public class Facade {
         return res;
     }
 
+    public static boolean testaPass(int ne, String pass) {
+        boolean res = false;
+        try {
+
+            EleitorDAO dao = new EleitorDAO();
+            res = dao.existePass(pass, ne);
+
+        } catch (Exception ex) {
+
+        }
+        return res;
+    }
+
 }

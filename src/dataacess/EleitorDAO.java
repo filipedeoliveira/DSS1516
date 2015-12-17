@@ -111,6 +111,22 @@ public class EleitorDAO implements Map<String, Eleitor> {
 
     }
 
+    public boolean existePass(String pass, int ne) {
+        String password = null;
+        try {
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM Eleitor WHERE numEleitor = '" + ne + "';");
+            if (rs.next()) {
+                password = rs.getString("Password");
+                System.out.println(password);
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+
+        return (password.equals(pass));
+    }
+
     @Override
     public Eleitor get(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
