@@ -54,22 +54,61 @@ public class EleitorDAO implements Map<String, Eleitor> {
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            int contador = 0;
+            Statement stm = conn.createStatement();
+            ResultSet i = stm.executeQuery("SELECT * FROM Eleitor");
+            for (; i.next(); contador++);
+            return contador;
+
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * From Eleitor");
+            return !rs.next();
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
     }
 
     @Override
     public boolean containsKey(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Eleitor WHERE id='" + (String) key + "'";
+            ResultSet rs = stm.executeQuery(sql);
+            return rs.next();
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
     }
 
     @Override
     public boolean containsValue(Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM Eleitor WHERE nome = '" + value + "';");
+            return (rs.next());
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+    }
+
+    public boolean existeEleitorNE(int ne) {
+        try {
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM Eleitor WHERE numEleitor = '" + ne + "';");
+            return (rs.next());
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+
     }
 
     @Override

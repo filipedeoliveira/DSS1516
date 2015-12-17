@@ -5,6 +5,8 @@
  */
 package view;
 
+import business.Facade;
+import dataacess.EleitorDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -154,7 +156,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+/*
         if (Visto_Administrador.isSelected()) {
             JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Administrador " + numeroEleitor.getText());
             new Administrador().setVisible(true);
@@ -164,18 +166,21 @@ public class TelaLogin extends javax.swing.JFrame {
             new MenuEleitor().setVisible(true);
             this.dispose();
         }
-        /*
+        
          JOptionPane.showMessageDialog(null, "Bem-Vindo");
          if()
          new Administrador().setVisible(true);
-         this.dispose();
-        if (numeroEleitor.getText().equals("e123") && passwordEleitor.getText().equals("1234")) {
+         this.dispose();*/
+        //if (numeroEleitor.getText().equals("e123") && passwordEleitor.getText().equals("1234")) {
+        String s = numeroEleitor.getText();
+        int foo = Integer.parseInt(s);
+        if(Facade.testaLogin(foo)){
             JOptionPane.showMessageDialog(null, "Bem-Vindo");
             new MenuEleitor().setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Acesso Negado");
-        }*/
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
