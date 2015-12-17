@@ -131,9 +131,10 @@ public class ConfirmaPassword extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Criada com Sucesso");
             new TelaLogin().setVisible(true);
             this.dispose();
-            System.out.println( n.getNumEleitor());
-            System.out.println("nigga");
+            //System.out.println( n.getNumEleitor());
             Facade.inserirPass(novaPassword.getText(), n.getNumCC());
+            JOptionPane.showMessageDialog(null, "O sue núemro de CC é " + Facade.daNCC(n.getNomeEleitor()));
+            
         }
         else{
             JOptionPane.showMessageDialog(null, "As Passwords não coincidem");

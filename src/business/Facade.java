@@ -91,8 +91,21 @@ public class Facade {
             res = dao.existePass(pass, ne);
 
         } catch (Exception ex) {
-
+            throw new NullPointerException(ex.getMessage());
         }
+        return res;
+    }
+
+    public static int daNCC(String eleitor) {
+        int res = -1;
+        try {
+            EleitorDAO dao = new EleitorDAO();
+            res = dao.getNumEleitor(eleitor);
+            System.out.println("Prima2");
+        } catch (Exception e) {
+           // throw new NullPointerException(e.getMessage());
+        }
+        System.out.println("prima3");
         return res;
     }
 

@@ -127,6 +127,22 @@ public class EleitorDAO implements Map<String, Eleitor> {
         return (password.equals(pass));
     }
 
+    public int getNumEleitor(String nomeEl) {
+
+        try {
+            int res;
+            res = -1;
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM Eleitor WHERE nome = '" + nomeEl + "';");
+            res = rs.getInt(1);
+            System.out.println("Prima 1");
+            return res;
+
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+    }
+
     @Override
     public Eleitor get(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
