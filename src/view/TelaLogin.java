@@ -160,23 +160,22 @@ public class TelaLogin extends javax.swing.JFrame {
             new Administrador().setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Eleitor "+numeroEleitor.getText());
+            JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Eleitor " + numeroEleitor.getText());
             new MenuEleitor().setVisible(true);
             this.dispose();
         }
-
-        /*JOptionPane.showMessageDialog(null, "Bem-Vindo");
+        /*
+         JOptionPane.showMessageDialog(null, "Bem-Vindo");
          if()
          new Administrador().setVisible(true);
-         this.dispose();*/
-        /*if(numeroEleitor.getText().equals("e123")&& passwordEleitor.getText().equals("1234")){
-         JOptionPane.showMessageDialog(null, "Bem-Vindo");
-         new MenuEleitor().setVisible(true);
          this.dispose();
-         }
-         else{
-         JOptionPane.showMessageDialog(null, "Acesso Negado");
-         }*/
+        if (numeroEleitor.getText().equals("e123") && passwordEleitor.getText().equals("1234")) {
+            JOptionPane.showMessageDialog(null, "Bem-Vindo");
+            new MenuEleitor().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Acesso Negado");
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

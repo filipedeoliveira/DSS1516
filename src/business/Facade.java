@@ -31,7 +31,7 @@ public class Facade {
      try{
      EleitorDAO dao = new EleitorDAO();
      Eleitor e = new Eleitor(num, nome, cc, morada, idDistrito);
-     dao.put(e);
+     dao.put(e.getNomeEleitor(),e);
      }
      catch(Exception ex){
      ex.printStackTrace();
