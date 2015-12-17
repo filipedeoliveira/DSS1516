@@ -156,32 +156,53 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-/*
-        if (Visto_Administrador.isSelected()) {
-            JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Administrador " + numeroEleitor.getText());
-            new Administrador().setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Eleitor " + numeroEleitor.getText());
-            new MenuEleitor().setVisible(true);
-            this.dispose();
-        }
-        
-         JOptionPane.showMessageDialog(null, "Bem-Vindo");
-         if()
-         new Administrador().setVisible(true);
-         this.dispose();*/
-        //if (numeroEleitor.getText().equals("e123") && passwordEleitor.getText().equals("1234")) {
+
         String s = numeroEleitor.getText();
-        int foo = Integer.parseInt(s);
         String pass = passwordEleitor.getText();
-        if(Facade.testaLogin(foo)&&Facade.testaPass(foo, pass)){
-            JOptionPane.showMessageDialog(null, "Bem-Vindo");
-            new MenuEleitor().setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Acesso Negado");
+
+        /**
+         * if (Visto_Administrador.isSelected() && s.equals("admin") &&
+         * pass.equals("admin")) { JOptionPane.showMessageDialog(null,
+         * "Bem-Vindo Sr Administrador" + numeroEleitor.getText()); new
+         * Administrador().setVisible(true); this.dispose(); } else if
+         * (Visto_Administrador.isSelected() && s.equals("admin2") &&
+         * pass.equals("admin2")) { JOptionPane.showMessageDialog(null,
+         * "Bem-Vindo Sr Administrador" + numeroEleitor.getText()); new
+         * Administrador().setVisible(true); this.dispose(); } else{ int foo =
+         * Integer.parseInt(s); if (Facade.testaLogin(foo) &&
+         * Facade.testaPass(foo, pass) && !Visto_Administrador.isSelected()) {
+         * JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Eleitor" +
+         * numeroEleitor.getText()); new MenuEleitor().setVisible(true);
+         * this.dispose(); } else JOptionPane.showMessageDialog(null, "Acesso
+         * Negado");
         }
+         */
+        if (Visto_Administrador.isSelected()) {
+            if (s.equals("admin") && pass.equals("admin")) {
+                JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Administrador" + numeroEleitor.getText());
+                new Administrador().setVisible(true);
+                this.dispose();
+            } else if (s.equals("admin2") && pass.equals("admin2")) {
+                JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Administrador" + numeroEleitor.getText());
+                new Administrador().setVisible(true);
+                this.dispose();
+                }
+            else JOptionPane.showMessageDialog(null, "Acesso Negado");
+        }
+        else {
+            int foo = 0;
+        try{
+            foo =Integer.parseInt(s);
+        }
+        catch (Exception e) {JOptionPane.showMessageDialog(null, "Acesso Negado");return;}
+        if (Facade.testaLogin(foo) && Facade.testaPass(foo, pass) && !Visto_Administrador.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Eleitor" + numeroEleitor.getText()); new MenuEleitor().setVisible(true);
+            this.dispose(); 
+        }
+            else JOptionPane.showMessageDialog(null, "Acesso Negado");
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -216,16 +237,21 @@ public class TelaLogin extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
