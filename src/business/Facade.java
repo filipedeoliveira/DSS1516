@@ -8,6 +8,7 @@ package business;
 import dataacess.CirculoEleitoralDAO;
 import dataacess.EleicaoDAO;
 import dataacess.EleitorDAO;
+import dataacess.ParticipanteDAO;
 import exceptions.ExisteOuNaoExisteException;
 import java.util.GregorianCalendar;
 
@@ -107,5 +108,16 @@ public class Facade {
             //throw new NullPointerException(e.getMessage());
         }
         return res;
+    }
+    
+    public static void insereParticipante(int idParticipanete, String nomeParticipante, int posicaoParticipante, int listaIdLista) {
+        try {
+            ParticipanteDAO dao = new ParticipanteDAO();
+            Participante p = new Participante(idParticipanete, nomeParticipante, posicaoParticipante, listaIdLista);
+            dao.put(p.getNomeParticipante(), p);
+        } catch (Exception ec) {
+            ec.printStackTrace();
+        }
+
     }
 }

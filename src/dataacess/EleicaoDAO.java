@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -111,7 +112,23 @@ public class EleicaoDAO implements Map<String, Eleicao> {
             throw new NullPointerException(e.getMessage());
         }
     }
-
+    public ArrayList<String> getPresidenciais(){
+        ArrayList<String> res = new ArrayList<String>();
+        String est = "Decorrer";
+       
+        try{
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Eleicao WHERE estado='" + est + "'";
+            ResultSet rs = stm.executeQuery(sql);
+             while(rs.next()){
+            String aux=rs.getString("tipo");
+            res.add(aux);
+            
+            }
+        }
+        catch(Exception e){ }
+    return res;
+    }
     @Override
     public void putAll(Map<? extends String, ? extends Eleicao> m) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

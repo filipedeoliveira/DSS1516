@@ -9,6 +9,7 @@ import business.Facade;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -152,19 +153,22 @@ public class CriarEleicao extends javax.swing.JFrame {
             estado = "Decorrer";
             int i = date.getYear();
             Facade.criaEleicao(tipo, codigoINT, estado, i);
+            JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
 
         } else if (codigoINT >= 1 && codigoINT < 5000) {
             tipo = "Presidencial";
             estado = "Decorrer";
             int i = date.getYear();
             Facade.criaEleicao(tipo, codigoINT, estado, i);
+            JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
         } else {
-            System.out.println("atuaprimafailed");
+            JOptionPane.showMessageDialog(null, "Valor inválido! ");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new Administrador().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
