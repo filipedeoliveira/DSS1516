@@ -5,6 +5,7 @@
  */
 package dataacess;
 
+import business.CirculoEleitoral;
 import business.Eleicao;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,9 +37,10 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         Eleicao e = null;
         try {
             Statement stm = conn.createStatement();
-            String sql = "INSERT INTO eleicao (nEleicao, tipo, dataEncerramento, estado) VALUES (\"" + value.getNumeroEleicao() + "\",\"" + value.getTipoEleicao() + "\",\"" + value.getDataEncerramento() + "\",\"" + value.getEstado() + "\");";
+            String sql = "INSERT INTO eleicao (nEleicao, tipo, dataEncerramento, estado) VALUES (\"" + value.getNumeroEleicao() + "\",\"" + value.getTipoEleicao() + "\",\"" + value.getData() + "\",\"" + value.getEstado() + "\");";
             int i = stm.executeUpdate(sql);
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
         return new Eleicao();
 
@@ -70,17 +72,44 @@ public class EleicaoDAO implements Map<String, Eleicao> {
 
     @Override
     public boolean containsValue(Object value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Eleicao WHERE tipo='" + (String) value + "'";
+            ResultSet rs = stm.executeQuery(sql);
+            return rs.next();
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
     }
 
     @Override
     public Eleicao get(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Eleicao el = null;
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Eleicao WHERE tipo='" + (String) key + "'";
+            ResultSet rs = stm.executeQuery(sql);
+            if (rs.next()) {
+             //   el = new Eleicao(rs.getString(2),rs.getInt(1),rs.getString(4),rs.getDate(3));
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+        return el;
     }
 
     @Override
     public Eleicao remove(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Eleicao el = this.get(key);
+            Statement stm = conn.createStatement();
+            String sql = "DELETE FROM Eleicao WHERE tipo = '"+(String) key+"' ;";
+            boolean i  = stm.execute(sql);
+            return el;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
     }
 
     @Override

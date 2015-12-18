@@ -59,7 +59,7 @@ public class Facade {
         }
     }
 
-    public static void criaEleicao(String tipo, int codigo, String estado, GregorianCalendar year) {
+    public static void criaEleicao(String tipo, int codigo, String estado, int year) {
         try {
             EleicaoDAO dao = new EleicaoDAO();
             Eleicao e = new Eleicao(tipo, codigo, estado, year);
@@ -101,7 +101,7 @@ public class Facade {
         try {
             EleitorDAO dao = new EleitorDAO();
             res = dao.getNumEleitor(cc);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             //throw new NullPointerException(e.getMessage());

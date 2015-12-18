@@ -16,30 +16,31 @@ public class Eleicao {
     private String tipoEleicao;
     private int numeroEleicao;
     private String estado;
-    private GregorianCalendar dataEncerramento;
-
+    //private GregorianCalendar dataEncerramento;
+    private int data;
+    
     public Eleicao() {
         this.tipoEleicao = "";
         this.numeroEleicao = 0;
         this.estado = "";
-        this.dataEncerramento = new GregorianCalendar();
+        this.data = 0;
     }
 
     
     
     
-    public Eleicao(String tipoEleicao, int numeroEleicao, String estado, GregorianCalendar data) {
+    public Eleicao(String tipoEleicao, int numeroEleicao, String estado, int data) {
         this.tipoEleicao = tipoEleicao;
         this.numeroEleicao = numeroEleicao;
         this.estado = estado;
-        this.dataEncerramento = data;
+        this.data = data;
     }
     
     public Eleicao(Eleicao e){
         this.tipoEleicao = e.getTipoEleicao();
         this.numeroEleicao = e.getNumeroEleicao();
         this.estado = e.getEstado();
-        this.dataEncerramento = e.getDataEncerramento();
+        this.data = e.getData();
     
     }
 
@@ -55,8 +56,8 @@ public class Eleicao {
         return estado;
     }
 
-    public GregorianCalendar getDataEncerramento() {
-        return dataEncerramento;
+    public int getData() {
+        return data;
     }
 
     public void setTipoEleicao(String tipoEleicao) {
@@ -71,8 +72,8 @@ public class Eleicao {
         this.estado = estado;
     }
 
-    public void setDataEncerramento(GregorianCalendar dataEncerramento) {
-        this.dataEncerramento = dataEncerramento;
+    public void setData(int dataEncerramento) {
+        this.data = dataEncerramento;
     }
     
     

@@ -6,6 +6,8 @@
 package view;
 
 import business.Facade;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -55,6 +57,12 @@ public class CriarEleicao extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigoActionPerformed(evt);
             }
         });
 
@@ -137,22 +145,31 @@ public class CriarEleicao extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int codigoINT = Integer.parseInt(codigo.getText());
         String tipo, estado;
-        GregorianCalendar date = new GregorianCalendar();
-        
-        if (codigoINT >= 5000){
+        LocalDate date = LocalDate.now();
+
+        if (codigoINT >= 5000) {
             tipo = "Assembleia";
             estado = "Decorrer";
-            //int i = date.getWeekYear();
-            Facade.criaEleicao(tipo, codigoINT, estado, date);
-            System.out.println("a tua prima");
-        
+            int i = date.getYear();
+            Facade.criaEleicao(tipo, codigoINT, estado, i);
+
+        } else if (codigoINT >= 1 && codigoINT < 5000) {
+            tipo = "Presidencial";
+            estado = "Decorrer";
+            int i = date.getYear();
+            Facade.criaEleicao(tipo, codigoINT, estado, i);
+        } else {
+            System.out.println("atuaprimafailed");
         }
-        else System.out.println("atuaprimafailed");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigoActionPerformed
 
     /**
      * @param args the command line arguments
