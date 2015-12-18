@@ -139,7 +139,7 @@ public class EleitorDAO implements Map<String, Eleitor> {
 
         } catch (Exception e) {
             e.printStackTrace();
-            //throw new NullPointerException(e.getMessage());
+
         }
         return res;
     }
