@@ -120,4 +120,14 @@ public class Facade {
         }
 
     }
+    public static void removerEleicao(String text) {
+        try {
+            EleicaoDAO dao = new EleicaoDAO();
+            dao.remove(text);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
 }
