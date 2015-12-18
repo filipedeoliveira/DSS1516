@@ -180,7 +180,7 @@ public class ResgistarEleitor extends javax.swing.JFrame {
 
         Facade.inserirEleitor(67686,a,numero,d,12);
         
-        JOptionPane.showMessageDialog(null, "Dados validados!");
+        //JOptionPane.showMessageDialog(null, "Dados validados!");
         new ConfirmaPassword(e).setVisible(true);
         this.dispose();
         

@@ -96,17 +96,16 @@ public class Facade {
         return res;
     }
 
-    public static int daNCC(String eleitor) {
+    public static int daNCC(int cc) {
         int res = -1;
         try {
             EleitorDAO dao = new EleitorDAO();
-            res = dao.getNumEleitor(eleitor);
-            System.out.println("Prima2");
+            res = dao.getNumEleitor(cc);
+            
         } catch (Exception e) {
-           // throw new NullPointerException(e.getMessage());
+            e.printStackTrace();
+            //throw new NullPointerException(e.getMessage());
         }
-        System.out.println("prima3");
         return res;
     }
-
 }

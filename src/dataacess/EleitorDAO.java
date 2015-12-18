@@ -118,7 +118,7 @@ public class EleitorDAO implements Map<String, Eleitor> {
             ResultSet rs = stm.executeQuery("SELECT * FROM Eleitor WHERE numEleitor = '" + ne + "';");
             if (rs.next()) {
                 password = rs.getString("Password");
-                System.out.println(password);
+                //System.out.println(password);
             }
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
@@ -127,20 +127,21 @@ public class EleitorDAO implements Map<String, Eleitor> {
         return (password.equals(pass));
     }
 
-    public int getNumEleitor(String nomeEl) {
-
+    public int getNumEleitor(int cc) {
+        int res = -1;
         try {
-            int res;
-            res = -1;
+
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM Eleitor WHERE nome = '" + nomeEl + "';");
-            res = rs.getInt(1);
-            System.out.println("Prima 1");
-            return res;
+            ResultSet rs = stm.executeQuery("SELECT * FROM Eleitor WHERE numCC = '" + cc + "';");
+            if (rs.next()) {
+                res = rs.getInt("numEleitor");
+            }
 
         } catch (Exception e) {
-            throw new NullPointerException(e.getMessage());
+            e.printStackTrace();
+            //throw new NullPointerException(e.getMessage());
         }
+        return res;
     }
 
     @Override

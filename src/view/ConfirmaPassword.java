@@ -14,10 +14,12 @@ import business.Facade;
  * @author Filipe Oliveira
  */
 public class ConfirmaPassword extends javax.swing.JFrame {
+
     private Eleitor n;
 
     /**
      * Creates new form ConfirmaPassword
+     *
      * @param n
      */
     public ConfirmaPassword(Eleitor n) {
@@ -121,23 +123,21 @@ public class ConfirmaPassword extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            new ResgistarEleitor().setVisible(true);
-            this.dispose();
+        new ResgistarEleitor().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(novaPassword.getText().equals(novaPassword2.getText())){
+        if (novaPassword.getText().equals(novaPassword2.getText())) {
             //funcão que vai inserir novo gajo na base de dados, com um id único
-            JOptionPane.showMessageDialog(null, "Criada com Sucesso");
+            JOptionPane.showMessageDialog(null, "Criada com Sucesso ");
+            Facade.inserirPass(novaPassword.getText(), n.getNumCC());
+            JOptionPane.showMessageDialog(null, "O sue número de eleitor é " + Facade.daNCC(n.getNumCC()));
             new TelaLogin().setVisible(true);
             this.dispose();
-            //System.out.println( n.getNumEleitor());
-            Facade.inserirPass(novaPassword.getText(), n.getNumCC());
-            JOptionPane.showMessageDialog(null, "O sue núemro de CC é " + Facade.daNCC(n.getNomeEleitor()));
-            
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "As Passwords não coincidem");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "As Passwords não coincidem ");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -169,7 +169,6 @@ public class ConfirmaPassword extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
