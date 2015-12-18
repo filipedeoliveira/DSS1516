@@ -179,11 +179,11 @@ public class TelaLogin extends javax.swing.JFrame {
          */
         if (Visto_Administrador.isSelected()) {
             if (s.equals("admin") && pass.equals("admin")) {
-                JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Administrador" + numeroEleitor.getText());
+                JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Administrador " + numeroEleitor.getText());
                 new Administrador().setVisible(true);
                 this.dispose();
             } else if (s.equals("admin2") && pass.equals("admin2")) {
-                JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Administrador" + numeroEleitor.getText());
+                JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Administrador " + numeroEleitor.getText());
                 new Administrador().setVisible(true);
                 this.dispose();
                 }

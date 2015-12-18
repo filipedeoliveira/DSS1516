@@ -8,14 +8,18 @@ package dataacess;
 import business.Eleicao;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
  * @author Filipe Oliveira
  */
-public class EleicaoDAO {
+public class EleicaoDAO implements Map<String, Eleicao> {
 
     private Connection conn;
 
@@ -28,13 +32,80 @@ public class EleicaoDAO {
         }
     }
 
-    public Eleicao put(Eleicao value) throws SQLException {
+    public Eleicao put(String tipo, Eleicao value) {
         Eleicao e = null;
-        Statement stm = conn.createStatement();
-        String sql = "INSERT INTO eleicao (nEleicao, tipo, dataEncerramento, estado) VALUES (\"" + value.getNumeroEleicao()+ "\",\"" + value.getTipoEleicao() + "\",\"" + value.getDataEncerramento() + "\",\"" + value.getEstado() + "\");";
-        int i = stm.executeUpdate(sql);
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "INSERT INTO eleicao (nEleicao, tipo, dataEncerramento, estado) VALUES (\"" + value.getNumeroEleicao() + "\",\"" + value.getTipoEleicao() + "\",\"" + value.getDataEncerramento() + "\",\"" + value.getEstado() + "\");";
+            int i = stm.executeUpdate(sql);
+        } catch (Exception ex) {
+        }
         return new Eleicao();
 
+    }
+
+    @Override
+    public int size() {
+        try {
+            int contador = 0;
+            Statement stm = conn.createStatement();
+            ResultSet i = stm.executeQuery("SELECT * FROM Eleicao");
+            for (; i.next(); contador++);
+            return contador;
+
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean isEmpty() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean containsKey(Object key) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean containsValue(Object value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Eleicao get(Object key) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Eleicao remove(Object key) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void putAll(Map<? extends String, ? extends Eleicao> m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<String> keySet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Collection<Eleicao> values() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set<Entry<String, Eleicao>> entrySet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

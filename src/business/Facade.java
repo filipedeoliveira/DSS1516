@@ -63,7 +63,7 @@ public class Facade {
         try {
             EleicaoDAO dao = new EleicaoDAO();
             Eleicao e = new Eleicao(tipo, codigo, estado, year);
-            dao.put(e);
+            dao.put(e.getTipoEleicao(), e);
         } catch (Exception ec) {
             ec.printStackTrace();
         }
