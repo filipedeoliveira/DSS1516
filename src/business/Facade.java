@@ -8,6 +8,7 @@ package business;
 import dataacess.CirculoEleitoralDAO;
 import dataacess.EleicaoDAO;
 import dataacess.EleitorDAO;
+import dataacess.ListaDAO;
 import dataacess.ParticipanteDAO;
 import exceptions.ExisteOuNaoExisteException;
 import java.util.GregorianCalendar;
@@ -109,7 +110,7 @@ public class Facade {
         }
         return res;
     }
-    
+
     public static void insereParticipante(int idParticipanete, String nomeParticipante, int posicaoParticipante, int listaIdLista) {
         try {
             ParticipanteDAO dao = new ParticipanteDAO();
@@ -120,6 +121,7 @@ public class Facade {
         }
 
     }
+
     public static void removerEleicao(String text) {
         try {
             EleicaoDAO dao = new EleicaoDAO();
@@ -129,26 +131,38 @@ public class Facade {
             ex.printStackTrace();
         }
     }
-    public static void terminaEleP(){
-       try {
+
+    public static void terminaEleP() {
+        try {
             EleicaoDAO dao = new EleicaoDAO();
             dao.terminaEleicaoPresidencial();
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    
+
     }
-    
-    public static void terminaEleA(){
-       try {
+
+    public static void terminaEleA() {
+        try {
             EleicaoDAO dao = new EleicaoDAO();
             dao.terminaEleicaoAssembleia();
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    
+
     }
-    
+
+    public static void insereLista(int idLista, String tipoLista, String nomeLista, int numEleicaoParticipa) {
+        try {
+            ListaDAO dao = new ListaDAO();
+            Lista l = new Lista(idLista, tipoLista, nomeLista, numEleicaoParticipa);
+            dao.put(l.getTipoLista(), l);
+        } catch (Exception ec) {
+            ec.printStackTrace();
+        }
+
+    }
+
 }
