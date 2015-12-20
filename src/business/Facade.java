@@ -129,5 +129,26 @@ public class Facade {
             ex.printStackTrace();
         }
     }
+    public static void terminaEleP(){
+       try {
+            EleicaoDAO dao = new EleicaoDAO();
+            dao.terminaEleicaoPresidencial();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    
+    }
+    
+    public static void terminaEleA(){
+       try {
+            EleicaoDAO dao = new EleicaoDAO();
+            dao.terminaEleicaoAssembleia();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    
+    }
     
 }

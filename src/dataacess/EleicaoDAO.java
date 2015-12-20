@@ -47,6 +47,30 @@ public class EleicaoDAO implements Map<String, Eleicao> {
 
     }
 
+    public void terminaEleicaoPresidencial() {
+        Eleicao e = null;
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "UPDATE eleicao SET estado='Terminado' WHERE nEleicao>=1 AND nEleicao<5000";
+            int i = stm.executeUpdate(sql);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+    
+    public void terminaEleicaoAssembleia() {
+        Eleicao e = null;
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "UPDATE eleicao SET estado='Terminado' WHERE nEleicao>=5000";
+            int i = stm.executeUpdate(sql);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
     @Override
     public int size() {
         try {
@@ -91,7 +115,7 @@ public class EleicaoDAO implements Map<String, Eleicao> {
             String sql = "SELECT * FROM Eleicao WHERE tipo='" + (String) key + "'";
             ResultSet rs = stm.executeQuery(sql);
             if (rs.next()) {
-             //   el = new Eleicao(rs.getString(2),rs.getInt(1),rs.getString(4),rs.getDate(3));
+                //   el = new Eleicao(rs.getString(2),rs.getInt(1),rs.getString(4),rs.getDate(3));
             }
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
@@ -104,31 +128,33 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         try {
             Eleicao el = this.get(key);
             Statement stm = conn.createStatement();
-            String sql = "DELETE FROM Eleicao WHERE tipo = '"+(String) key+"' ;";
-            boolean i  = stm.execute(sql);
+            String sql = "DELETE FROM Eleicao WHERE tipo = '" + (String) key + "' ;";
+            boolean i = stm.execute(sql);
             return el;
         } catch (Exception e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
         }
     }
-    public ArrayList<String> getPresidenciais(){
+
+    public ArrayList<String> getPresidenciais() {
         ArrayList<String> res = new ArrayList<String>();
         String est = "Decorrer";
-       
-        try{
+
+        try {
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Eleicao WHERE estado='" + est + "'";
             ResultSet rs = stm.executeQuery(sql);
-             while(rs.next()){
-            String aux=rs.getString("tipo");
-            res.add(aux);
-            
+            while (rs.next()) {
+                String aux = rs.getString("tipo");
+                res.add(aux);
+
             }
+        } catch (Exception e) {
         }
-        catch(Exception e){ }
-    return res;
+        return res;
     }
+
     @Override
     public void putAll(Map<? extends String, ? extends Eleicao> m) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
