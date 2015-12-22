@@ -104,8 +104,11 @@ public class ConcorrerPresidencial extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String no = nomeCand.getText();
+        String tipo = "Presidencial";
+        int nEleicao = Facade.idEleicaoPart(tipo);
         int idLista = 1;
-        Facade.insereLista(123, "Presidencial", no, idLista);
+        String validacao ="Não válido";
+        Facade.insereLista(123, "Presidencial", no, validacao,nEleicao );
         JOptionPane.showMessageDialog(null, "Registado Com Sucesso");
         nomeCand.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed

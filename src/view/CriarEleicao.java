@@ -152,7 +152,7 @@ public class CriarEleicao extends javax.swing.JFrame {
             tipo = "Assembleia";
             estado = "Decorrer";
             int i = date.getYear();
-            Facade.removerEleicao("Assembleia");
+            Facade.alterarEstado("Assembleia");
             Facade.criaEleicao(tipo, codigoINT, estado, i);
             JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
 
@@ -160,7 +160,7 @@ public class CriarEleicao extends javax.swing.JFrame {
             tipo = "Presidencial";
             estado = "Decorrer";
             int i = date.getYear();
-            Facade.removerEleicao("Presidencial");
+            Facade.alterarEstado("Presidencial");
             Facade.criaEleicao(tipo, codigoINT, estado, i);
             JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
         } else {

@@ -16,19 +16,22 @@ public class Lista {
     private int idLista;
     private String tipoLista;
     private String nomeLista;
+    private String validacao;
     private int numEleicaoParticipa;
 
     public Lista() {
         this.idLista = 0;
         this.tipoLista = "";
         this.nomeLista = "";
+        this.validacao = "";
         this.numEleicaoParticipa = 0;
     }
 
-    public Lista(int idLista, String tipoLista, String nomeLista, int numEleicaoParticipa) {
+    public Lista(int idLista, String tipoLista, String nomeLista,String val, int numEleicaoParticipa) {
         this.idLista = idLista;
         this.tipoLista = tipoLista;
         this.nomeLista = nomeLista;
+        this.validacao = val;
         this.numEleicaoParticipa = numEleicaoParticipa;
     }
 
@@ -36,6 +39,7 @@ public class Lista {
         this.idLista = l.getIdLista();
         this.tipoLista = l.getTipoLista();
         this.nomeLista = l.getNomeLista();
+        this.validacao = l.getValidacao();
         this.numEleicaoParticipa = l.getNumEleicaoParticipa();
     }
 
@@ -53,6 +57,14 @@ public class Lista {
 
     public void setTipoLista(String tipoLista) {
         this.tipoLista = tipoLista;
+    }
+
+    public void setValidacao(String validacao) {
+        this.validacao = validacao;
+    }
+
+    public String getValidacao() {
+        return validacao;
     }
 
     public String getNomeLista() {

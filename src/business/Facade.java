@@ -122,10 +122,10 @@ public class Facade {
 
     }
 
-    public static void removerEleicao(String text) {
+    public static void alterarEstado(String text) {
         try {
             EleicaoDAO dao = new EleicaoDAO();
-            dao.remove(text);
+            dao.alterarEstado(text);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -154,15 +154,39 @@ public class Facade {
 
     }
 
-    public static void insereLista(int idLista, String tipoLista, String nomeLista, int numEleicaoParticipa) {
+    public static void insereLista(int idLista, String tipoLista, String nomeLista,String validacao, int numEleicaoParticipa) {
         try {
             ListaDAO dao = new ListaDAO();
-            Lista l = new Lista(idLista, tipoLista, nomeLista, numEleicaoParticipa);
+            Lista l = new Lista(idLista, tipoLista, nomeLista, validacao, numEleicaoParticipa);
             dao.put(l.getTipoLista(), l);
         } catch (Exception ec) {
             ec.printStackTrace();
         }
 
     }
+    
+    public static int idListapart(String nomeLista){
+        int i = 0;
+    try {
+        ListaDAO dao = new ListaDAO();
+        i = dao.getIdLista(nomeLista);
+        
+    
+    }
+    catch(Exception e) {e.printStackTrace();}
+        return i;
+    }
+    
+    public static int idEleicaoPart(String tipo){
+        int i = 0;
+    try{
+        EleicaoDAO dao = new EleicaoDAO();
+        i = dao.getIdEleicao(tipo);
+    }
+    catch (Exception e) {e.printStackTrace();}
+        return i;
+    }
 
 }
+
+

@@ -36,7 +36,7 @@ public class ParticipanteDAO implements Map<String, Participante> {
         Participante p = null;
         try {
             Statement stm = conn.createStatement();
-            String sql = "INSERT INTO participantes (idParticipantes, nomeEleitor, posicao, Lista_idLista) VALUES (\"" + value.getIdParticipante() + "\",\"" + value.getNomeParticipante() + "\",\"" + value.getPosicaoParticipante() + "\",\"" + value.getListaIdLista() + "\");";
+            String sql = "INSERT INTO participantes (nomeEleitor, posicao, Lista_idLista) VALUES (\"" + value.getNomeParticipante() + "\",\"" + value.getPosicaoParticipante() + "\",\"" + value.getListaIdLista() + "\");";
             int i = stm.executeUpdate(sql);
             return new Participante();
 

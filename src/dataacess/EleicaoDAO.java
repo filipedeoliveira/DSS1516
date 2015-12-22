@@ -70,6 +70,19 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         }
 
     }
+    
+        public Eleicao alterarEstado(Object key) {
+        try {
+            Eleicao el = this.get(key);
+            Statement stm = conn.createStatement();
+            String sql = "UPDATE eleicao SET estado='Terminado' WHERE tipo = '"+(String) key+"';";
+            int i = stm.executeUpdate(sql);
+            return el;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+    }
 
     @Override
     public int size() {
@@ -105,6 +118,22 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
         }
+    }
+    
+    
+    public int getIdEleicao(String tipo){
+        int i = 0;
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM eleicao WHERE tipo = '" +(String) tipo+ "' AND estado = 'Decorrer' ;";
+            ResultSet rs = stm.executeQuery(sql);
+            if (rs.next()){
+                i = rs.getInt(1);
+            }
+        }
+        catch (Exception e){ throw new NullPointerException(e.getMessage());}
+        return i ;
+    
     }
 
     @Override
