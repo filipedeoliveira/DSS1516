@@ -211,6 +211,17 @@ public class Facade {
         return dlm;
     }
     
+        public static DefaultListModel<String> assembvoto(){
+        ListaDAO e = new ListaDAO();
+        ArrayList<String> aux = new ArrayList<String>();
+        DefaultListModel<String> dlm = new DefaultListModel<>();
+        aux = e.assembLista();
+        for (String s : aux) {
+            dlm.addElement(s);
+        }
+        return dlm;
+    }
+    
     public static void validar(Object nomeL){
         try{
         ListaDAO dao = new ListaDAO(); 

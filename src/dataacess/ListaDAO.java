@@ -135,6 +135,24 @@ public class ListaDAO implements Map<String, Lista> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public ArrayList<String> assembLista() {
+        ArrayList<String> res = new ArrayList<String>();
+        String val = "Válido";
+
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM lista WHERE validacao='" + val + "';";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String aux = rs.getString("nomeLista");
+                res.add(aux);
+
+            }
+        } catch (Exception e) {throw new NullPointerException(e.getMessage());
+        }
+        return res;
+    }
+    
     public ArrayList<String> getValidacoesL(String tipo) {
         ArrayList<String> res = new ArrayList<String>();
         String val = "Não válido";
