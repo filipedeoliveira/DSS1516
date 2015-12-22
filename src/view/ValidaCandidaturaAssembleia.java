@@ -43,8 +43,18 @@ public class ValidaCandidaturaAssembleia extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Validar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Não Validar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Retroceder");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +130,20 @@ public class ValidaCandidaturaAssembleia extends javax.swing.JFrame {
         new ValidaCandidatura().setVisible(true);
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Object j = Listas.getSelectedValue();
+         Facade.validar(j);
+         fillDataPres();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Object j = Listas.getSelectedValue();
+        int id = Facade.idListapart((String) j);
+        Facade.removerP(id);
+        Facade.removerL(j);
+        fillDataPres();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

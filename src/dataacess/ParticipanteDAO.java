@@ -76,6 +76,17 @@ public class ParticipanteDAO implements Map<String, Participante> {
     public Participante remove(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public void removeTodosPartido(int id){
+        try{
+            Statement stm = conn.createStatement();
+            String sql = "DELETE FROM participantes WHERE Lista_idLista = '"+id+"';";
+            int i = stm.executeUpdate(sql);
+            
+            
+        }
+        catch (Exception e) {}
+    }
 
     @Override
     public void putAll(Map<? extends String, ? extends Participante> m) {

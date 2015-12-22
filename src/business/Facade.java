@@ -228,6 +228,13 @@ public class Facade {
         catch(Exception e) {}
     }
     
+    public static void removerP (int id){
+        try{
+            ParticipanteDAO dao = new ParticipanteDAO();
+            dao.removeTodosPartido(id);
+        }
+        catch (Exception e){}
+    }
 }
 
 

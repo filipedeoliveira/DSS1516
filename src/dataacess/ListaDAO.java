@@ -68,19 +68,16 @@ public class ListaDAO implements Map<String, Lista> {
     }
     
     public int getIdLista(String nome) {
-        int i = 0;
+       // int i = 0;
         try {
-            Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM lista WHERE nomeLista = '" + nome + "';";
-            ResultSet rs = stm.executeQuery(sql);
-            if (rs.next()) {
-            i = rs.getInt(1);
-            }
+        Lista l = this.get(nome);
+        return l.getIdLista();
+        
         }
         catch(Exception e){
             throw new NullPointerException(e.getMessage());
         }
-            return i;
+
     }
     
     @Override
