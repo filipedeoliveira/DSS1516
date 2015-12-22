@@ -10,6 +10,7 @@ import dataacess.EleicaoDAO;
 import dataacess.EleitorDAO;
 import dataacess.ListaDAO;
 import dataacess.ParticipanteDAO;
+import dataacess.ResultadosDAO;
 import exceptions.ExisteOuNaoExisteException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -245,6 +246,16 @@ public class Facade {
             dao.removeTodosPartido(id);
         }
         catch (Exception e){}
+    }
+    
+    public static void votar (int idResultados, String partidovotado, int voto, int deputados){
+        try{
+            ResultadosDAO dao = new ResultadosDAO();
+            Resultados r = new Resultados(idResultados, partidovotado, voto, deputados);
+            
+            dao.put(partido, partido);
+        }
+        catch (Exception e) {}
     }
 }
 

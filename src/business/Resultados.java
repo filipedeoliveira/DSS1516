@@ -12,21 +12,47 @@ import java.util.Objects;
  * @author Filipe Oliveira
  */
 public class Resultados {
+
     private int idResultados;
     private String participante;
+    private int votos;
+    private int deputados;
 
-    public Resultados(){
+    public Resultados() {
         this.idResultados = 0;
-        this.participante = "";    
+        this.participante = "";
+        this.votos = 0;
+        this.deputados = 0;
     }
-    
-    public Resultados(int idResultados, String participante) {
+
+    public Resultados(int idResultados, String participante, int vt, int dp) {
         this.idResultados = idResultados;
         this.participante = participante;
+        this.votos = vt;
+        this.deputados = dp;
     }
-    public Resultados(Resultados r){
+
+    public Resultados(Resultados r) {
         this.idResultados = r.getIdResultados();
         this.participante = r.getParticipante();
+        this.votos = r.getVotos();
+        this.deputados = r.getDeputados();
+    }
+
+    public int getVotos() {
+        return votos;
+    }
+
+    public int getDeputados() {
+        return deputados;
+    }
+
+    public void setVotos(int votos) {
+        this.votos = votos;
+    }
+
+    public void setDeputados(int deputados) {
+        this.deputados = deputados;
     }
 
     public int getIdResultados() {
@@ -67,5 +93,5 @@ public class Resultados {
         }
         return true;
     }
-    
+
 }

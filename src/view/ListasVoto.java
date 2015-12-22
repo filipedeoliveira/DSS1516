@@ -162,11 +162,8 @@ public class ListasVoto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        Object j = Listas.getSelectedValue();
-        int id = Facade.idListapart((String) j);
-        Facade.removerP(id);
-        Facade.removerL(j);
-        fillDataPres();
+        Object j = Votar.getSelectedValue();
+        Facade.votar(j);
 
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
