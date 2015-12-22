@@ -60,6 +60,11 @@ public class Administrador extends javax.swing.JFrame {
         });
 
         jButton3.setText("Valida Candidatura");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cria Eleição");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +216,11 @@ public class Administrador extends javax.swing.JFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new ValidaCandidatura().setVisible(true);
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

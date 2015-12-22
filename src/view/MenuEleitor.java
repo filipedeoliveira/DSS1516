@@ -5,6 +5,7 @@
  */
 package view;
 
+import business.Facade;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import dataacess.EleicaoDAO;
@@ -24,13 +25,8 @@ public class MenuEleitor extends javax.swing.JFrame {
     }
 
     public void fillDataPres() {
-        EleicaoDAO e = new EleicaoDAO();
-        ArrayList<String> aux = new ArrayList<String>();
-        DefaultListModel<String> dlm = new DefaultListModel<>();
-        aux = e.getPresidenciais();
-        for (String s : aux) {
-            dlm.addElement(s);
-        }
+        DefaultListModel<String> dlm = new DefaultListModel<String>();
+        dlm = Facade.tipoE();
         jList2.setModel(dlm);
     }
 

@@ -11,7 +11,9 @@ import dataacess.EleitorDAO;
 import dataacess.ListaDAO;
 import dataacess.ParticipanteDAO;
 import exceptions.ExisteOuNaoExisteException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -186,7 +188,46 @@ public class Facade {
     catch (Exception e) {e.printStackTrace();}
         return i;
     }
-
+    
+    public static DefaultListModel<String> validacoesL(String tipo){
+    ListaDAO l = new ListaDAO();
+        ArrayList<String> aux = new ArrayList<String>();
+        DefaultListModel<String> dlm = new DefaultListModel<>();
+        aux = l.getValidacoesL(tipo);
+        for (String s : aux) {
+            dlm.addElement(s);
+        }
+        return dlm;
+    }
+    
+    public static DefaultListModel<String> tipoE(){
+        EleicaoDAO e = new EleicaoDAO();
+        ArrayList<String> aux = new ArrayList<String>();
+        DefaultListModel<String> dlm = new DefaultListModel<>();
+        aux = e.getPresidenciais();
+        for (String s : aux) {
+            dlm.addElement(s);
+        }
+        return dlm;
+    }
+    
+    public static void validar(Object nomeL){
+        try{
+        ListaDAO dao = new ListaDAO(); 
+        dao.valida((String) nomeL);
+        
+        }
+        catch(Exception e){}
+    }
+    
+    public static void removerL(Object nomeL){
+        try{
+        ListaDAO dao = new ListaDAO();
+        dao.remove(nomeL);
+        }
+        catch(Exception e) {}
+    }
+    
 }
 
 
