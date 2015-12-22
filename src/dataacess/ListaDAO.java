@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -87,7 +88,7 @@ public class ListaDAO implements Map<String, Lista> {
         Lista le = null;
         try {
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM lista WHERE nome = '" + (String) key + "';";
+            String sql = "SELECT * FROM lista WHERE nomeLista = '" + (String) key + "';";
             ResultSet rs = stm.executeQuery(sql);
             if (rs.next()) {
             le = new Lista(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getInt(5));
@@ -100,7 +101,16 @@ public class ListaDAO implements Map<String, Lista> {
     
     @Override
     public Lista remove(Object key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try {
+            Lista l = this.get(key);
+            Statement stm = conn.createStatement();
+            String sql = "DELETE FROM lista WHERE nomeLista = '"+(String) key+"' ;";
+            boolean i  = stm.execute(sql);
+            return l;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
     }
     
     @Override
@@ -128,4 +138,28 @@ public class ListaDAO implements Map<String, Lista> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public ArrayList<String> getValidacoesL(String tipo) {
+        ArrayList<String> res = new ArrayList<String>();
+        String val = "Não válido";
+
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='"+tipo+"';";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String aux = rs.getString("nomeLista");
+                res.add(aux);
+
+            }
+        } catch (Exception e) {
+        }
+        return res;
+    }
+    
+    public String valida(String nomeL) throws SQLException{
+            Statement stm = conn.createStatement();
+            String sql = "UPDATE lista SET validacao = 'Válido' WHERE nomeLista = '"+nomeL+"';";
+            int i = stm.executeUpdate(sql);
+            return nomeL;
+    }
 }
