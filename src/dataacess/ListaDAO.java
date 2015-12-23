@@ -171,12 +171,20 @@ public class ListaDAO implements Map<String, Lista> {
         return res;
     }
 
-    public ArrayList<String> getValidosTodosValidados() {
+    public String valida(String nomeL) throws SQLException {
+        Statement stm = conn.createStatement();
+        String sql = "UPDATE lista SET validacao = 'Válido' WHERE nomeLista = '" + nomeL + "';";
+        int i = stm.executeUpdate(sql);
+        return nomeL;
+    }
+
+    public ArrayList<String> getValidosTodosValidadosAss() {
         ArrayList<String> res = new ArrayList<String>();
         String val = "Válido";
+        String tipo = "Assembleia";
         try {
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM lista WHERE validacao='" + val + "';";
+            String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='"+ tipo +"' ;";
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
                 String aux = rs.getString("nomeLista");
@@ -187,10 +195,27 @@ public class ListaDAO implements Map<String, Lista> {
         return res;
     }
 
-    public String valida(String nomeL) throws SQLException {
-        Statement stm = conn.createStatement();
-        String sql = "UPDATE lista SET validacao = 'Válido' WHERE nomeLista = '" + nomeL + "';";
-        int i = stm.executeUpdate(sql);
-        return nomeL;
+    public void inserListasValidas(ArrayList<String> in) {
+
+        try {
+            Statement stm = conn.createStatement();
+
+            for (String s : in) {
+                String sql = "INSERT INTO resultados (participante) VALUES (\"" + s + "\");";
+                int i = stm.executeUpdate(sql);
+            }
+        } catch (Exception e) {
+        }
     }
+    
+    public void insereResultadosAss(){
+        try {
+            ArrayList<String> inser = new ArrayList<String>();
+            inser=getValidosTodosValidadosAss();
+            inserListasValidas(inser);
+        } catch (Exception e) {
+        }
+    }
+    
+
 }

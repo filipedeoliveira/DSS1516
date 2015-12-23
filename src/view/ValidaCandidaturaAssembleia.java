@@ -136,6 +136,8 @@ public class ValidaCandidaturaAssembleia extends javax.swing.JFrame {
         //inserir as listas
          Facade.validar(j);
          fillDataPres();
+   
+         Facade.preencheResultadosListas();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

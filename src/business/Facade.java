@@ -157,7 +157,7 @@ public class Facade {
 
     }
 
-    public static void insereLista(int idLista, String tipoLista, String nomeLista,String validacao, int numEleicaoParticipa) {
+    public static void insereLista(int idLista, String tipoLista, String nomeLista, String validacao, int numEleicaoParticipa) {
         try {
             ListaDAO dao = new ListaDAO();
             Lista l = new Lista(idLista, tipoLista, nomeLista, validacao, numEleicaoParticipa);
@@ -167,31 +167,32 @@ public class Facade {
         }
 
     }
-    
-    public static int idListapart(String nomeLista){
+
+    public static int idListapart(String nomeLista) {
         int i = 0;
-    try {
-        ListaDAO dao = new ListaDAO();
-        i = dao.getIdLista(nomeLista);
-        
-    
-    }
-    catch(Exception e) {e.printStackTrace();}
+        try {
+            ListaDAO dao = new ListaDAO();
+            i = dao.getIdLista(nomeLista);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return i;
     }
-    
-    public static int idEleicaoPart(String tipo){
+
+    public static int idEleicaoPart(String tipo) {
         int i = 0;
-    try{
-        EleicaoDAO dao = new EleicaoDAO();
-        i = dao.getIdEleicao(tipo);
-    }
-    catch (Exception e) {e.printStackTrace();}
+        try {
+            EleicaoDAO dao = new EleicaoDAO();
+            i = dao.getIdEleicao(tipo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return i;
     }
-    
-    public static DefaultListModel<String> validacoesL(String tipo){
-    ListaDAO l = new ListaDAO();
+
+    public static DefaultListModel<String> validacoesL(String tipo) {
+        ListaDAO l = new ListaDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
         aux = l.getValidacoesL(tipo);
@@ -200,8 +201,8 @@ public class Facade {
         }
         return dlm;
     }
-    
-    public static DefaultListModel<String> tipoE(){
+
+    public static DefaultListModel<String> tipoE() {
         EleicaoDAO e = new EleicaoDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -211,8 +212,8 @@ public class Facade {
         }
         return dlm;
     }
-    
-        public static DefaultListModel<String> assembvoto(){
+
+    public static DefaultListModel<String> assembvoto() {
         ListaDAO e = new ListaDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -222,41 +223,49 @@ public class Facade {
         }
         return dlm;
     }
-    
-    public static void validar(Object nomeL){
-        try{
-        ListaDAO dao = new ListaDAO(); 
-        dao.valida((String) nomeL);
-        
+
+    public static void validar(Object nomeL) {
+        try {
+            ListaDAO dao = new ListaDAO();
+            dao.valida((String) nomeL);
+
+        } catch (Exception e) {
         }
-        catch(Exception e){}
     }
-    
-    public static void removerL(Object nomeL){
-        try{
-        ListaDAO dao = new ListaDAO();
-        dao.remove(nomeL);
+
+    public static void removerL(Object nomeL) {
+        try {
+            ListaDAO dao = new ListaDAO();
+            dao.remove(nomeL);
+        } catch (Exception e) {
         }
-        catch(Exception e) {}
     }
-    
-    public static void removerP (int id){
-        try{
+
+    public static void removerP(int id) {
+        try {
             ParticipanteDAO dao = new ParticipanteDAO();
             dao.removeTodosPartido(id);
+        } catch (Exception e) {
         }
-        catch (Exception e){}
     }
-    
-    public static void votar (int idResultados, String partidovotado, int voto, int deputados){
-        try{
+
+    public static void votar(int idResultados, String partidovotado, int voto, int deputados) {
+        try {
             ResultadosDAO dao = new ResultadosDAO();
             Resultados r = new Resultados(idResultados, partidovotado, voto, deputados);
-            
+
             dao.put(r.getParticipante(), r);
+        } catch (Exception e) {
         }
-        catch (Exception e) {}
+    }
+
+    public static void preencheResultadosListas() {
+        try {
+            ListaDAO dao = new ListaDAO();
+            ResultadosDAO dao2 = new ResultadosDAO();
+            dao2.clear();
+            dao.insereResultadosAss();
+        } catch (Exception e) {
+        }
     }
 }
-
-
