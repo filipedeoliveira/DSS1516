@@ -153,6 +153,26 @@ public class ListaDAO implements Map<String, Lista> {
         return res;
     }
 
+    public ArrayList<String> presLista() {
+        ArrayList<String> res = new ArrayList<String>();
+        String val = "Válido";
+        String tipo = "Presidencial";
+
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='" + tipo + "';";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String aux = rs.getString("nomeLista");
+                res.add(aux);
+
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
+    }
+
     public ArrayList<String> getValidacoesL(String tipo) {
         ArrayList<String> res = new ArrayList<String>();
         String val = "Não válido";
@@ -184,7 +204,7 @@ public class ListaDAO implements Map<String, Lista> {
         String tipo = "Assembleia";
         try {
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='"+ tipo +"' ;";
+            String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='" + tipo + "' ;";
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
                 String aux = rs.getString("nomeLista");
@@ -193,6 +213,24 @@ public class ListaDAO implements Map<String, Lista> {
         } catch (Exception e) {
         }
         return res;
+    }
+
+    public ArrayList<String> getValidosTodosValidadosPres() {
+        ArrayList<String> res = new ArrayList<String>();
+        String val = "Válido";
+        String tipo = "Presidencial";
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='" + tipo + "' ;";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String aux = rs.getString("nomeLista");
+                res.add(aux);
+            }
+        } catch (Exception e) {
+        }
+        return res;
+
     }
 
     public void inserListasValidas(ArrayList<String> in) {
@@ -207,15 +245,25 @@ public class ListaDAO implements Map<String, Lista> {
         } catch (Exception e) {
         }
     }
-    
-    public void insereResultadosAss(){
+
+    public void insereResultadosAss() {
         try {
             ArrayList<String> inser = new ArrayList<String>();
-            inser=getValidosTodosValidadosAss();
+            inser = getValidosTodosValidadosAss();
             inserListasValidas(inser);
         } catch (Exception e) {
         }
     }
-    
+
+    public void insereResultadosPres() {
+
+        try {
+            ArrayList<String> inser = new ArrayList<String>();
+            inser = getValidosTodosValidadosPres();
+            inserListasValidas(inser);
+        } catch (Exception e) {
+        }
+
+    }
 
 }

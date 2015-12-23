@@ -224,6 +224,17 @@ public class Facade {
         return dlm;
     }
 
+    public static DefaultListModel<String> presvoto() {
+        ListaDAO e = new ListaDAO();
+        ArrayList<String> aux = new ArrayList<String>();
+        DefaultListModel<String> dlm = new DefaultListModel<>();
+        aux = e.presLista();
+        for (String s : aux) {
+            dlm.addElement(s);
+        }
+        return dlm;
+    }
+
     public static void validar(Object nomeL) {
         try {
             ListaDAO dao = new ListaDAO();
@@ -259,7 +270,7 @@ public class Facade {
         }
     }
 
-    public static void preencheResultadosListas() {
+    public static void preencheResultadosListasAss() {
         try {
             ListaDAO dao = new ListaDAO();
             ResultadosDAO dao2 = new ResultadosDAO();
@@ -267,5 +278,16 @@ public class Facade {
             dao.insereResultadosAss();
         } catch (Exception e) {
         }
+    }
+
+    public static void preencheResultadosListaPres() {
+        try {
+            ListaDAO dao = new ListaDAO();
+            ResultadosDAO dao2 = new ResultadosDAO();
+            dao2.clear();// temos aqui problemas????
+            dao.insereResultadosPres();
+        } catch (Exception e) {
+        }
+
     }
 }

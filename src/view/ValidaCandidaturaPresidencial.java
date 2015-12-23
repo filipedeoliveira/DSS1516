@@ -149,6 +149,7 @@ public class ValidaCandidaturaPresidencial extends javax.swing.JFrame {
          Object j = Listas.getSelectedValue();
          Facade.validar(j);
          fillDataPres();
+         Facade.preencheResultadosListaPres();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
