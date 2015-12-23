@@ -253,7 +253,7 @@ public class Facade {
             ResultadosDAO dao = new ResultadosDAO();
             Resultados r = new Resultados(idResultados, partidovotado, voto, deputados);
             
-            dao.put(partido, partido);
+            dao.put(r.getParticipante(), r);
         }
         catch (Exception e) {}
     }

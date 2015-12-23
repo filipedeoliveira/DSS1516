@@ -7,6 +7,7 @@ package dataacess;
 
 import business.CirculoEleitoral;
 import business.Eleicao;
+import business.Lista;
 import business.Resultados;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -106,7 +107,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
             String sql = "SELECT * FROM Resultados WHERE id='" + (String) key + "'";
             ResultSet rs = stm.executeQuery(sql);
             if (rs.next()) {
-                res = new Resultados(rs.getInt(1), rs.getString(2));
+                res = new Resultados(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
             }
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
@@ -115,22 +116,14 @@ public class ResultadosDAO implements Map<String, Resultados> {
     }
 
     @Override
-    public Resultados remove(Object par) {
-        
-        /**
-         *  Resultados ce = this.get(key);
-            Statement stm = conn.createStatement();
-            String sql = "DELETE '"+key+"' FROM Resultados";
-            int i  = stm.executeUpdate(sql);
-            return ce;
-         * */
-        
+    public Resultados remove(Object key) {
+
         try {
-            Resultados r = null;
+            Resultados r = this.get(key);
             Statement stm = conn.createStatement();
-            String sql = "DELETE FROM resultados WHERE participante = '" + (String) par + "' ;";
-            boolean it = stm.execute(sql);
-            return new Resultados(r.getIdResultados(), (String) par);//Ver tipos 
+            String sql = "DELETE FROM resultados WHERE participante = '" + (String) key + "' ;";
+            boolean i = stm.execute(sql);
+            return r;
         } catch (Exception e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
@@ -166,7 +159,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FORM Resultados");
             for (; rs.next();) {
-                res.add(new Resultados(rs.getInt(1), rs.getString(2)));
+               // res.add(new Resultados(rs.getInt(1), rs.getString(2)));
             }
             return res;
         } catch (Exception e) {
