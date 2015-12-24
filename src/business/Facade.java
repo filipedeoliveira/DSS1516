@@ -274,7 +274,7 @@ public class Facade {
         try {
             ListaDAO dao = new ListaDAO();
             ResultadosDAO dao2 = new ResultadosDAO();
-            dao2.clear();
+            dao2.clear();// temos aqui probl
             dao.insereResultadosAss();
         } catch (Exception e) {
         }
