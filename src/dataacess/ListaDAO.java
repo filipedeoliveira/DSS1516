@@ -240,6 +240,8 @@ public class ListaDAO implements Map<String, Lista> {
 
             for (String s : in) {
                 String sql = "INSERT INTO resultados (participante) VALUES (\"" + s + "\");";
+                //String sql = "IF EXISTS(SELECT * FROM resultados WHERE participante ='"+ s + "') THEN UPDATE resultados SET participante ='"+ s + "';";
+                //             "ELSE INSERT INTO resultados (participante) VALUES (\"" + s + "\");";
                 int i = stm.executeUpdate(sql);
             }
         } catch (Exception e) {
