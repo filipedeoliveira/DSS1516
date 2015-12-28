@@ -12,6 +12,7 @@ import dataacess.ListaDAO;
 import dataacess.ParticipanteDAO;
 import dataacess.ResultadosDAO;
 import exceptions.ExisteOuNaoExisteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import javax.swing.DefaultListModel;
@@ -260,34 +261,113 @@ public class Facade {
         }
     }
 
-    public static void votar(int idResultados, String partidovotado, int voto, int deputados) {
+    public static void votar(int idResultados, String partidovotado, int voto, int deputados, String tipoEleicao) {
         try {
             ResultadosDAO dao = new ResultadosDAO();
-            Resultados r = new Resultados(idResultados, partidovotado, voto, deputados);
+            Resultados r = new Resultados(idResultados, partidovotado, voto, deputados, tipoEleicao);
 
             dao.put(r.getParticipante(), r);
         } catch (Exception e) {
         }
     }
 
-    public static void preencheResultadosListasAss() {
+    public static void preencheResultadosListasAss(String participante, Resultados resultado) {
         try {
-            ListaDAO dao = new ListaDAO();
             ResultadosDAO dao2 = new ResultadosDAO();
-            dao2.clear();// temos aqui probl
-            dao.insereResultadosAss();
+            dao2.put(participante, resultado);// temos aqui probl
         } catch (Exception e) {
         }
     }
 
-    public static void preencheResultadosListaPres() {
+    public static void preencheResultadosListaPres(String participante, Resultados resultado) {
         try {
-            ListaDAO dao = new ListaDAO();
             ResultadosDAO dao2 = new ResultadosDAO();
-            dao2.clear();// temos aqui problemas????
-            dao.insereResultadosPres();
+            dao2.put(participante, resultado);// temos aqui problemas????
         } catch (Exception e) {
         }
 
     }
+    
+    public static void insereVoto(String nomeVoto, String tipoEleicao){
+        try{
+            ResultadosDAO dao = new ResultadosDAO();
+            dao.updateVotos(nomeVoto, tipoEleicao);
+        }
+        catch(Exception e){}
+    }
+    
+        public static DefaultListModel<String> verResultadosPres() throws SQLException {
+            DefaultListModel<String> dlm = new DefaultListModel<>();
+            ResultadosDAO r = new ResultadosDAO();
+            ArrayList<String> aux = new ArrayList<String>();
+            aux = r.verResultadosPres();
+            for (String s : aux) {
+                dlm.addElement(s);
+            }
+            return dlm;}
+        
+        public static DefaultListModel<String> verVotosPres() throws SQLException {
+            DefaultListModel<String> dlm = new DefaultListModel<>();
+            ResultadosDAO r = new ResultadosDAO();
+            ArrayList<String> aux = new ArrayList<String>();
+            aux = r.verVotosbdPres();
+            for (String s : aux) {
+                dlm.addElement(s);
+            }
+            return dlm;}
+        
+        public static DefaultListModel<String> verVotosAss() throws SQLException {
+            DefaultListModel<String> dlm = new DefaultListModel<>();
+            ResultadosDAO r = new ResultadosDAO();
+            ArrayList<String> aux = new ArrayList<String>();
+            aux = r.verVotosbdAss();
+            for (String s : aux) {
+                dlm.addElement(s);
+            }
+            return dlm;}
+                
+        public static DefaultListModel<String> verResultadosAss() throws SQLException {
+            DefaultListModel<String> dlm = new DefaultListModel<>();
+            ResultadosDAO r = new ResultadosDAO();
+            ArrayList<String> aux = new ArrayList<String>();
+            aux = r.verResultadosAss();
+            for (String s : aux) {
+                dlm.addElement(s);
+            }
+            return dlm;}
+        
+          public static DefaultListModel<String> verDeputados() throws SQLException {
+            DefaultListModel<String> dlm = new DefaultListModel<>();
+            ResultadosDAO r = new ResultadosDAO();
+            ArrayList<String> aux = new ArrayList<String>();
+            aux = r.verDeputados();
+            for (String s : aux) {
+                dlm.addElement(s);
+            }
+            return dlm;}
+          
+          public static void updateDeputados() throws SQLException{
+              ResultadosDAO dao = new ResultadosDAO();
+              int i = dao.totalVotos()/230;
+              dao.updateDeputados(i);
+          }
+          
+          public static void totalVotos() throws SQLException{
+              ResultadosDAO dao = new ResultadosDAO();
+              dao.totalVotos();
+          }
+        
+          public static void inserirVotosBranco() throws SQLException{
+              ResultadosDAO dao = new ResultadosDAO();
+              String nome = "Branco";
+              String tipo = "Assembleia";
+              Resultados r = new Resultados (0,nome,0,0,tipo);
+              dao.put(nome, r);
+          }
+          
+          public static void limparResultados(String tipo) throws SQLException{
+              ResultadosDAO dao = new ResultadosDAO();
+              dao.remove(tipo);
+          }
+        
 }

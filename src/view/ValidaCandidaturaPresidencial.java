@@ -6,6 +6,7 @@
 package view;
 
 import business.Facade;
+import business.Resultados;
 import dataacess.ListaDAO;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -149,7 +150,9 @@ public class ValidaCandidaturaPresidencial extends javax.swing.JFrame {
          Object j = Listas.getSelectedValue();
          Facade.validar(j);
          fillDataPres();
-         Facade.preencheResultadosListaPres();
+         String tipo = "Presidêncial";
+         Resultados r = new Resultados(0,(String) j,0,0, tipo);
+         Facade.preencheResultadosListaPres((String) j, r);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -130,7 +130,9 @@ public class PresidenciaisVoto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void VotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VotarActionPerformed
-        // TODO add your handling code here:
+        Object j = VotarL.getSelectedValue();
+        String tipo = "Presidêncial";
+        Facade.insereVoto((String) j, tipo);
     }//GEN-LAST:event_VotarActionPerformed
 
     /**

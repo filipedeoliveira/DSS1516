@@ -6,9 +6,12 @@
 package view;
 
 import business.Facade;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -154,6 +157,16 @@ public class CriarEleicao extends javax.swing.JFrame {
             int i = date.getYear();
             Facade.alterarEstado("Assembleia");
             Facade.criaEleicao(tipo, codigoINT, estado, i);
+            try {
+                Facade.limparResultados("Assembleia");
+            } catch (SQLException ex) {
+                Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                Facade.inserirVotosBranco();
+            } catch (SQLException ex) {
+                Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
 
         } else if (codigoINT >= 1 && codigoINT < 5000) {
@@ -162,6 +175,11 @@ public class CriarEleicao extends javax.swing.JFrame {
             int i = date.getYear();
             Facade.alterarEstado("Presidencial");
             Facade.criaEleicao(tipo, codigoINT, estado, i);
+            try {
+                Facade.limparResultados("Presidêncial");
+            } catch (SQLException ex) {
+                Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
         } else {
             JOptionPane.showMessageDialog(null, "Valor inválido! ");

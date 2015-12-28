@@ -17,19 +17,22 @@ public class Resultados {
     private String participante;
     private int votos;
     private int deputados;
+    private String TipoEleicao;
 
     public Resultados() {
         this.idResultados = 0;
         this.participante = "";
         this.votos = 0;
         this.deputados = 0;
+        this.TipoEleicao="";
     }
 
-    public Resultados(int idResultados, String participante, int vt, int dp) {
+    public Resultados(int idResultados, String participante, int vt, int dp, String te) {
         this.idResultados = idResultados;
         this.participante = participante;
         this.votos = vt;
         this.deputados = dp;
+        this.TipoEleicao=te;
     }
 
     public Resultados(Resultados r) {
@@ -37,6 +40,15 @@ public class Resultados {
         this.participante = r.getParticipante();
         this.votos = r.getVotos();
         this.deputados = r.getDeputados();
+        this.TipoEleicao=r.getTipoEleicao();
+    }
+
+    public void setTipoEleicao(String TipoEleicao) {
+        this.TipoEleicao = TipoEleicao;
+    }
+
+    public String getTipoEleicao() {
+        return TipoEleicao;
     }
 
     public int getVotos() {
@@ -73,8 +85,10 @@ public class Resultados {
 
     @Override
     public String toString() {
-        return "Resultados{" + "idResultados=" + idResultados + ", participante=" + participante + '}';
+        return "Resultados{" + "idResultados=" + idResultados + ", participante=" + participante + ", votos=" + votos + ", deputados=" + deputados + ", TipoEleicao=" + TipoEleicao + '}';
     }
+
+    
 
     @Override
     public boolean equals(Object obj) {
@@ -91,7 +105,18 @@ public class Resultados {
         if (!Objects.equals(this.participante, other.participante)) {
             return false;
         }
+        if (this.votos != other.votos) {
+            return false;
+        }
+        if (this.deputados != other.deputados) {
+            return false;
+        }
+        if (!Objects.equals(this.TipoEleicao, other.TipoEleicao)) {
+            return false;
+        }
         return true;
     }
+
+    
 
 }

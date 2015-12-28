@@ -14,10 +14,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,9 +43,9 @@ public class ResultadosDAO implements Map<String, Resultados> {
         Resultados e = null;
         try {
             Statement stm = conn.createStatement();
-            String sql = "INSERT INTO resultados (idResultados, participantes) VALUES (\"" + value.getIdResultados() + "\",\"" + value.getParticipante() + "\");";
+            String sql = "INSERT INTO resultados (participante,votos, deputados, TipoEleicao) VALUES (\"" + value.getParticipante() + "\",\""+value.getVotos()+"\",\""+value.getDeputados()+"\",\""+value.getTipoEleicao()+"\");";
             int i = stm.executeUpdate(sql);
-        } catch (Exception r) {
+        } catch (Exception r) { r.printStackTrace();
 
         }
         return new Resultados();
@@ -107,7 +110,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
             String sql = "SELECT * FROM Resultados WHERE id='" + (String) key + "'";
             ResultSet rs = stm.executeQuery(sql);
             if (rs.next()) {
-                res = new Resultados(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+                res = new Resultados(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
             }
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
@@ -164,6 +167,128 @@ public class ResultadosDAO implements Map<String, Resultados> {
             return res;
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
+        }
+    }
+    
+    public void updateVotos(String nomeVoto, String tipoEleicao){
+        try{
+            Statement stm = conn.createStatement();
+            String sql = "Update resultados SET votos = votos + 1 WHERE participante = '"+nomeVoto+"';";
+            int i = stm.executeUpdate(sql);
+        }
+        catch (Exception e){}
+    }
+    
+    public ArrayList<String> verResultadosPres() {
+        ArrayList<String> res = new ArrayList<String>();
+        String tipo = "Presidêncial";
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String aux = rs.getString("participante");
+                res.add(aux);
+
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
+    }
+    
+     public ArrayList<String> verVotosbdPres() {
+        ArrayList<String> res = new ArrayList<String>();
+        String tipo = "Presidêncial";
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String aux = rs.getString("votos");
+                res.add(aux);
+
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
+    }
+     
+         public ArrayList<String> verResultadosAss() {
+        ArrayList<String> res = new ArrayList<String>();
+        String tipo = "Assembleia";
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String aux = rs.getString("participante");
+                res.add(aux);
+
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
+    }
+     
+          public ArrayList<String> verVotosbdAss() {
+        ArrayList<String> res = new ArrayList<String>();
+        String tipo = "Assembleia";
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String aux = rs.getString("votos");
+                res.add(aux);
+
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
+    }
+          
+        public ArrayList<String> verDeputados() {
+        ArrayList<String> res = new ArrayList<String>();
+        String tipo = "Assembleia";
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String aux = rs.getString("deputados");
+                res.add(aux);
+
+            }
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
+    }
+         
+    public int totalVotos() throws SQLException{
+            int i = 0;
+            String tipo = "Assembleia";
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Resultados WHERE TipoEleicao = '"+tipo+"';";
+            ResultSet rs = stm.executeQuery(sql);
+            while(rs.next()){                                                                                                       
+                i = i + rs.getInt(3);
+             }
+            return i;
+    }
+         
+    public void updateDeputados(int qe){ // QE = quoeficiente eleitoral
+        
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "UPDATE resultados SET deputados = FLOOR(votos / '"+qe+"') ;";
+            int i = stm.executeUpdate(sql);
+        }
+        catch (SQLException ex) {
         }
     }
 

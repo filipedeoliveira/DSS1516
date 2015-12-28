@@ -6,6 +6,7 @@
 package view;
 
 import business.Facade;
+import business.Resultados;
 import javax.swing.DefaultListModel;
 
 /**
@@ -135,7 +136,9 @@ public class ValidaCandidaturaAssembleia extends javax.swing.JFrame {
         Object j = Listas.getSelectedValue();
          Facade.validar(j);
          fillDataPres();
-         Facade.preencheResultadosListasAss();
+         String tipo = "Assembleia";
+         Resultados r = new Resultados(0,(String)j,0,0, tipo);
+         Facade.preencheResultadosListasAss((String) j, r);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

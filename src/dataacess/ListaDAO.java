@@ -248,24 +248,6 @@ public class ListaDAO implements Map<String, Lista> {
         }
     }
 
-    public void insereResultadosAss() {
-        try {
-            ArrayList<String> inser = new ArrayList<String>();
-            inser = getValidosTodosValidadosAss();
-            inserListasValidas(inser);
-        } catch (Exception e) {
-        }
-    }
 
-    public void insereResultadosPres() {
-
-        try {
-            ArrayList<String> inser = new ArrayList<String>();
-            inser = getValidosTodosValidadosPres();
-            inserListasValidas(inser);
-        } catch (Exception e) {
-        }
-
-    }
 
 }
