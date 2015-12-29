@@ -165,7 +165,8 @@ public class ListasVoto extends javax.swing.JFrame {
         String j = (String) Votar.getSelectedValue();
         String tipo = "Assembleia";
         Facade.insereVoto(j, tipo);
-        
+        new MenuEleitor().setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 

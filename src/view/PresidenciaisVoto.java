@@ -133,6 +133,8 @@ public class PresidenciaisVoto extends javax.swing.JFrame {
         Object j = VotarL.getSelectedValue();
         String tipo = "Presidêncial";
         Facade.insereVoto((String) j, tipo);
+        new MenuEleitor().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VotarActionPerformed
 
     /**
