@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,19 +25,24 @@ public class ParticipanteDAO implements Map<String, Participante> {
 
     private Connection conn;
 
-    public ParticipanteDAO() {
+    public ParticipanteDAO() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException p) {
             p.printStackTrace();
+        } finally {
+            conn.close();
         }
     }
 
     public Participante put(String nomeParticipante, Participante value) {
         Participante p = null;
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "INSERT INTO participantes (nomeEleitor, posicao, Lista_idLista) VALUES (\"" + value.getNomeParticipante() + "\",\"" + value.getPosicaoParticipante() + "\",\"" + value.getListaIdLista() + "\");";
             int i = stm.executeUpdate(sql);
@@ -44,6 +51,12 @@ public class ParticipanteDAO implements Map<String, Participante> {
         } catch (Exception e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                throw new NullPointerException(ex.getMessage());
+            }
         }
 
     }
@@ -77,30 +90,37 @@ public class ParticipanteDAO implements Map<String, Participante> {
     public Participante remove(Object key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public String removeAll(Object key){
+
+    public String removeAll(Object key) throws SQLException {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
-            String sql = "DELETE FROM participantes WHERE TipoEleicao = '"+ (String) key+"';";
+            String sql = "DELETE FROM participantes WHERE TipoEleicao = '" + (String) key + "';";
             boolean i = stm.execute(sql);
             return (String) key;
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        } finally {
+            conn.close();
         }
-        catch (Exception e){throw new UnsupportedOperationException("Not supported yet.");}
     }
-    
-    
-    public void removeTodosPartido(int id){
-        try{
-            Statement stm = conn.createStatement();
-            String sql = "DELETE FROM participantes WHERE Lista_idLista = '"+id+"';";
-            int i = stm.executeUpdate(sql);
-            
-            
-        }
-        catch (Exception e) {}
-    }
-    
 
+    public void removeTodosPartido(int id) throws SQLException {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            Statement stm = conn.createStatement();
+            String sql = "DELETE FROM participantes WHERE Lista_idLista = '" + id + "';";
+            int i = stm.executeUpdate(sql);
+
+        } catch (Exception e) {
+        } finally {
+            conn.close();
+        }
+    }
 
     @Override
     public void putAll(Map<? extends String, ? extends Participante> m) {
@@ -109,12 +129,22 @@ public class ParticipanteDAO implements Map<String, Participante> {
 
     @Override
     public void clear() {
-        try{
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "DELETE FROM participantes;";
             boolean i = stm.execute(sql);
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
-        catch (Exception e){throw new UnsupportedOperationException("Not supported yet.");}
+        finally{try {
+            conn.close();
+            } catch (SQLException ex) {
+                throw new NullPointerException(ex.getMessage());
+            }
+}
     }
 
     @Override

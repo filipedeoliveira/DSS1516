@@ -31,8 +31,8 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
     public CirculoEleitoralDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

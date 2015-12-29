@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,25 +26,36 @@ public class ListaDAO implements Map<String, Lista> {
 
     private Connection conn;
 
-    public ListaDAO() {
+    public ListaDAO() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException l) {
             l.printStackTrace();
+        } finally {
+            conn.close();
         }
     }
 
     public Lista put(String tipoL, Lista value) {
 
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Lista l = null;
             Statement stm = conn.createStatement();
             String sql = "INSERT INTO lista (nomeLista, tipo, validacao, Eleicao_nEleicao) VALUES (\"" + value.getNomeLista() + "\",\"" + value.getTipoLista() + "\", \"" + value.getValidacao() + "\",\"" + value.getNumEleicaoParticipa() + "\");";
             int i = stm.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                throw new NullPointerException(ex.getMessage());
+            }
         }
         return new Lista(value.getIdLista(), value.getTipoLista(), value.getNomeLista(), value.getValidacao(), value.getNumEleicaoParticipa());
 
@@ -84,6 +97,9 @@ public class ListaDAO implements Map<String, Lista> {
     public Lista get(Object key) {
         Lista le = null;
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM lista WHERE nomeLista = '" + (String) key + "';";
             ResultSet rs = stm.executeQuery(sql);
@@ -92,6 +108,12 @@ public class ListaDAO implements Map<String, Lista> {
             }
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                throw new NullPointerException(ex.getMessage());
+            }
         }
         return le;
     }
@@ -99,6 +121,9 @@ public class ListaDAO implements Map<String, Lista> {
     @Override
     public Lista remove(Object key) {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Lista l = this.get(key);
             Statement stm = conn.createStatement();
             String sql = "DELETE FROM lista WHERE nomeLista = '" + (String) key + "' ;";
@@ -107,16 +132,27 @@ public class ListaDAO implements Map<String, Lista> {
         } catch (Exception e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                throw new NullPointerException(ex.getMessage());
+            }
         }
     }
-    
-        public void removeAll(Object key){
-        try{
+
+    public void removeAll(Object key) throws SQLException {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
-            String sql = "DELETE FROM lista WHERE tipo = '"+(String) key+"';";
+            String sql = "DELETE FROM lista WHERE tipo = '" + (String) key + "';";
             boolean i = stm.execute(sql);
+        } catch (Exception e) {
+        } finally {
+            conn.close();
         }
-        catch (Exception e){}
     }
 
     @Override
@@ -144,14 +180,17 @@ public class ListaDAO implements Map<String, Lista> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ArrayList<String> assembLista() {
+    public ArrayList<String> assembLista() throws SQLException {
         ArrayList<String> res = new ArrayList<String>();
         String val = "Válido";
         String tipo = "Assembleia";
 
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo = '"+tipo+"';";
+            String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo = '" + tipo + "';";
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
                 String aux = rs.getString("nomeLista");
@@ -160,16 +199,21 @@ public class ListaDAO implements Map<String, Lista> {
             }
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
+        } finally {
+            conn.close();
         }
         return res;
     }
 
-    public ArrayList<String> presLista() {
+    public ArrayList<String> presLista() throws SQLException {
         ArrayList<String> res = new ArrayList<String>();
         String val = "Válido";
         String tipo = "Presidencial";
 
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='" + tipo + "';";
             ResultSet rs = stm.executeQuery(sql);
@@ -180,15 +224,20 @@ public class ListaDAO implements Map<String, Lista> {
             }
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
+        } finally {
+            conn.close();
         }
         return res;
     }
 
-    public ArrayList<String> getValidacoesL(String tipo) {
+    public ArrayList<String> getValidacoesL(String tipo) throws SQLException {
         ArrayList<String> res = new ArrayList<String>();
         String val = "Não válido";
 
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='" + tipo + "';";
             ResultSet rs = stm.executeQuery(sql);
@@ -198,22 +247,31 @@ public class ListaDAO implements Map<String, Lista> {
 
             }
         } catch (Exception e) {
+        } finally {
+            conn.close();
         }
         return res;
     }
 
-    public String valida(String nomeL) throws SQLException {
+    public String valida(String nomeL) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+        this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+        //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         Statement stm = conn.createStatement();
         String sql = "UPDATE lista SET validacao = 'Válido' WHERE nomeLista = '" + nomeL + "';";
         int i = stm.executeUpdate(sql);
+        conn.close();
         return nomeL;
     }
 
-    public ArrayList<String> getValidosTodosValidadosAss() {
+    public ArrayList<String> getValidosTodosValidadosAss() throws SQLException {
         ArrayList<String> res = new ArrayList<String>();
         String val = "Válido";
         String tipo = "Assembleia";
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='" + tipo + "' ;";
             ResultSet rs = stm.executeQuery(sql);
@@ -222,15 +280,20 @@ public class ListaDAO implements Map<String, Lista> {
                 res.add(aux);
             }
         } catch (Exception e) {
+        } finally {
+            conn.close();
         }
         return res;
     }
 
-    public ArrayList<String> getValidosTodosValidadosPres() {
+    public ArrayList<String> getValidosTodosValidadosPres() throws SQLException {
         ArrayList<String> res = new ArrayList<String>();
         String val = "Válido";
         String tipo = "Presidencial";
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo ='" + tipo + "' ;";
             ResultSet rs = stm.executeQuery(sql);
@@ -239,14 +302,19 @@ public class ListaDAO implements Map<String, Lista> {
                 res.add(aux);
             }
         } catch (Exception e) {
+        } finally {
+            conn.close();
         }
         return res;
 
     }
 
-    public void inserListasValidas(ArrayList<String> in) {
+    public void inserListasValidas(ArrayList<String> in) throws SQLException {
 
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
 
             for (String s : in) {
@@ -256,9 +324,9 @@ public class ListaDAO implements Map<String, Lista> {
                 int i = stm.executeUpdate(sql);
             }
         } catch (Exception e) {
+        } finally {
+            conn.close();
         }
     }
-
-
 
 }
