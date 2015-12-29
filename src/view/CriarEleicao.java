@@ -167,10 +167,13 @@ public class CriarEleicao extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
+                Facade.limparParticipantes();
+                Facade.limparLista(tipo);  
+                JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
+            
 
         } else if (codigoINT >= 1 && codigoINT < 5000) {
-            tipo = "Presidencial";
+            tipo = "Presidêncial";
             estado = "Decorrer";
             int i = date.getYear();
             Facade.alterarEstado("Presidencial");
@@ -180,6 +183,12 @@ public class CriarEleicao extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
             }
+            try {
+                Facade.inserirVotosBranco();
+            } catch (SQLException ex) {
+                Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Facade.limparLista(tipo);
             JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
         } else {
             JOptionPane.showMessageDialog(null, "Valor inválido! ");

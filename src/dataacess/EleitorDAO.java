@@ -26,7 +26,8 @@ public class EleitorDAO implements Map<String, Eleitor> {
     public EleitorDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -47,7 +48,7 @@ public class EleitorDAO implements Map<String, Eleitor> {
             String sql = "INSERT INTO eleitor (nome, numCC, morada, Distrito_idDistrito) VALUES (\"" + value.getNomeEleitor() + "\",\"" + value.getNumCC() + "\",\"" + value.getMorada() + "\",\"" + value.getidDistrito() + "\");";
             int i = stm.executeUpdate(sql);
 
-        } catch (Exception e) {
+        } catch (Exception e) { e.printStackTrace();
         }
         return new Eleitor(value.getNumEleitor(), value.getNomeEleitor(), value.getNumCC(), value.getMorada(), value.getidDistrito());
     }

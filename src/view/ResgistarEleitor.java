@@ -44,7 +44,7 @@ public class ResgistarEleitor extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        distrito = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,7 +108,7 @@ public class ResgistarEleitor extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
+                                .addComponent(distrito, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -131,7 +131,7 @@ public class ResgistarEleitor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(distrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -164,7 +164,7 @@ public class ResgistarEleitor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(this.jTextField1.getText().equals("")|| this.jTextField2.getText().equals("") || this.jTextField3.getText().equals("") || this.jTextField4.getText().equals("")){
+        if(this.jTextField1.getText().equals("")|| this.jTextField2.getText().equals("") || this.jTextField3.getText().equals("") || this.distrito.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Por favor preencha todos os campos!");
         }
         else{
@@ -172,13 +172,13 @@ public class ResgistarEleitor extends javax.swing.JFrame {
         a = this.jTextField1.getText();
         s = this.jTextField2.getText();
         d = this.jTextField3.getText();
-        f = this.jTextField4.getText();
+        f = this.distrito.getText();
         
         int numero = Integer.parseInt(s);
-        int idDistrito = 12; //alterar para uma função
-        Eleitor e = new Eleitor(67686,a,numero,d,12);
+        int idDistrito = Facade.getIdDistrito(f); //alterar para uma função
+        Eleitor e = new Eleitor(67686,a,numero,d,idDistrito);
 
-        Facade.inserirEleitor(67686,a,numero,d,12);
+        Facade.inserirEleitor(67686,a,numero,d,idDistrito);
         
         //JOptionPane.showMessageDialog(null, "Dados validados!");
         new ConfirmaPassword(e).setVisible(true);
@@ -228,6 +228,7 @@ public class ResgistarEleitor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField distrito;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -239,7 +240,6 @@ public class ResgistarEleitor extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
     public String getNome() {

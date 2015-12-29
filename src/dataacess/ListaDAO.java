@@ -27,7 +27,8 @@ public class ListaDAO implements Map<String, Lista> {
     public ListaDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException l) {
             l.printStackTrace();
         }
@@ -108,6 +109,15 @@ public class ListaDAO implements Map<String, Lista> {
             throw new NullPointerException(e.getMessage());
         }
     }
+    
+        public void removeAll(Object key){
+        try{
+            Statement stm = conn.createStatement();
+            String sql = "DELETE FROM lista WHERE tipo = '"+(String) key+"';";
+            boolean i = stm.execute(sql);
+        }
+        catch (Exception e){}
+    }
 
     @Override
     public void putAll(Map<? extends String, ? extends Lista> m) {
@@ -137,10 +147,11 @@ public class ListaDAO implements Map<String, Lista> {
     public ArrayList<String> assembLista() {
         ArrayList<String> res = new ArrayList<String>();
         String val = "Válido";
+        String tipo = "Assembleia";
 
         try {
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM lista WHERE validacao='" + val + "';";
+            String sql = "SELECT * FROM lista WHERE validacao='" + val + "' AND tipo = '"+tipo+"';";
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
                 String aux = rs.getString("nomeLista");

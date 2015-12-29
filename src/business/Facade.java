@@ -367,7 +367,23 @@ public class Facade {
           
           public static void limparResultados(String tipo) throws SQLException{
               ResultadosDAO dao = new ResultadosDAO();
-              dao.remove(tipo);
+              dao.removeAll(tipo);
+          }
+          
+          public static void limparLista(String tipo){
+              ListaDAO dao = new ListaDAO();
+              dao.removeAll(tipo);
+          }
+          
+          public static void limparParticipantes() {
+              ParticipanteDAO dao2 = new ParticipanteDAO();
+              dao2.clear();
+          }
+          
+          public static int getIdDistrito(String distrito){
+              CirculoEleitoralDAO dao = new CirculoEleitoralDAO();
+              int i = dao.getID(distrito);
+              return i;
           }
         
 }

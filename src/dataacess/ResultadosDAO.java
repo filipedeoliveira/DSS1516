@@ -33,7 +33,8 @@ public class ResultadosDAO implements Map<String, Resultados> {
     public ResultadosDAO() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException r) {
             r.printStackTrace();
         }
@@ -132,6 +133,16 @@ public class ResultadosDAO implements Map<String, Resultados> {
             throw new NullPointerException(e.getMessage());
         }
 
+    }
+    
+    public String removeAll(Object key){
+        try{
+        Statement stm = conn.createStatement();
+        String sql = "DELETE FROM resultados WHERE TipoEleicao = '"+(String) key+"';";
+        boolean i = stm.execute(sql);
+        return ((String) key);
+        }
+        catch (Exception e){throw new NullPointerException(e.getMessage());}
     }
 
     @Override

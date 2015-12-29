@@ -31,7 +31,8 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
     public CirculoEleitoralDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -176,6 +177,16 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
             throw new NullPointerException(e.getMessage());
         }
 
+    }
+    
+    public int getID(String distrito){
+        try{
+            CirculoEleitoral ce = this.get(distrito);
+            int id = ce.getIdDistrito();
+            return id;
+        }
+        catch (Exception e){throw new NullPointerException(e.getMessage());}
+        
     }
 
     @Override

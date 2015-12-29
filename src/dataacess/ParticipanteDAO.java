@@ -26,7 +26,8 @@ public class ParticipanteDAO implements Map<String, Participante> {
     public ParticipanteDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException p) {
             p.printStackTrace();
         }
@@ -77,6 +78,17 @@ public class ParticipanteDAO implements Map<String, Participante> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public String removeAll(Object key){
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "DELETE FROM participantes WHERE TipoEleicao = '"+ (String) key+"';";
+            boolean i = stm.execute(sql);
+            return (String) key;
+        }
+        catch (Exception e){throw new UnsupportedOperationException("Not supported yet.");}
+    }
+    
+    
     public void removeTodosPartido(int id){
         try{
             Statement stm = conn.createStatement();
@@ -87,6 +99,8 @@ public class ParticipanteDAO implements Map<String, Participante> {
         }
         catch (Exception e) {}
     }
+    
+
 
     @Override
     public void putAll(Map<? extends String, ? extends Participante> m) {
@@ -95,7 +109,12 @@ public class ParticipanteDAO implements Map<String, Participante> {
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Statement stm = conn.createStatement();
+            String sql = "DELETE FROM participantes;";
+            boolean i = stm.execute(sql);
+        }
+        catch (Exception e){throw new UnsupportedOperationException("Not supported yet.");}
     }
 
     @Override
