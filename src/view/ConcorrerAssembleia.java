@@ -6,6 +6,9 @@
 package view;
 
 import business.Facade;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -126,7 +129,11 @@ public class ConcorrerAssembleia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new MenuEleitor().setVisible(true);
+        try {
+            new MenuEleitor().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConcorrerAssembleia.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

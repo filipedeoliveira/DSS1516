@@ -167,31 +167,39 @@ public class ResgistarEleitor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int numeroCC = Integer.parseInt(this.jTextField2.getText());
         if(this.jTextField1.getText().equals("")|| this.jTextField2.getText().equals("") || this.jTextField3.getText().equals("") || this.distrito.getText().equals("")){
         JOptionPane.showMessageDialog(null, "Por favor preencha todos os campos!");
         }
-        else{
-        String a,s,d,f,g ;
-        a = this.jTextField1.getText();
-        s = this.jTextField2.getText();
-        d = this.jTextField3.getText();
-        f = this.distrito.getText();
-        
-        int numero = Integer.parseInt(s);
-        int idDistrito = 0; 
-            try {
-                idDistrito = Facade.getIdDistrito(f); //alterar para uma função
-            } catch (SQLException ex) {
-                Logger.getLogger(ResgistarEleitor.class.getName()).log(Level.SEVERE, null, ex);
+        else try {
+            if(Facade.existeE(numeroCC)){
+                JOptionPane.showMessageDialog(null, "Numero de CC já em utilização!");
             }
-        Eleitor e = new Eleitor(67686,a,numero,d,idDistrito);
-
-        Facade.inserirEleitor(67686,a,numero,d,idDistrito);
-        
-        //JOptionPane.showMessageDialog(null, "Dados validados!");
-        new ConfirmaPassword(e).setVisible(true);
-        this.dispose();
-        
+            else{
+                String a,s,d,f,g ;
+                a = this.jTextField1.getText();
+                s = this.jTextField2.getText();
+                d = this.jTextField3.getText();
+                f = this.distrito.getText();
+                
+                int numero = Integer.parseInt(s);
+                int idDistrito = 0;
+                try {
+                    idDistrito = Facade.getIdDistrito(f);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ResgistarEleitor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Eleitor e = new Eleitor(67686,a,numero,d,idDistrito);
+                
+                Facade.inserirEleitor(67686,a,numero,d,idDistrito);
+                
+                //JOptionPane.showMessageDialog(null, "Dados validados!");
+                new ConfirmaPassword(e).setVisible(true);
+                this.dispose();
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ResgistarEleitor.class.getName()).log(Level.SEVERE, null, ex);
         }                      
         
     }//GEN-LAST:event_jButton2ActionPerformed

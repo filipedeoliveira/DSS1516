@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dataacess;
 
 import business.CirculoEleitoral;
@@ -34,7 +29,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
         } catch (ClassNotFoundException | SQLException r) {
             r.printStackTrace();
         } finally {
@@ -47,7 +42,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "INSERT INTO resultados (participante,votos, deputados, TipoEleicao) VALUES (\"" + value.getParticipante() + "\",\"" + value.getVotos() + "\",\"" + value.getDeputados() + "\",\"" + value.getTipoEleicao() + "\");";
             int i = stm.executeUpdate(sql);
@@ -69,7 +64,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             int contador = 0;
             Statement stm = conn.createStatement();
             ResultSet i = stm.executeQuery("SELECT * FROM resultados");
@@ -93,7 +88,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * From resultados");
             return !rs.next();
@@ -114,7 +109,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM resultados WHERE id='" + (String) key + "'";
             ResultSet rs = stm.executeQuery(sql);
@@ -135,7 +130,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM resultados WHERE participante='" + (String) value + "'";
             ResultSet rs = stm.executeQuery(sql);
@@ -156,8 +151,8 @@ public class ResultadosDAO implements Map<String, Resultados> {
         Resultados res = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Resultados WHERE id='" + (String) key + "'";
             ResultSet rs = stm.executeQuery(sql);
@@ -181,8 +176,8 @@ public class ResultadosDAO implements Map<String, Resultados> {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Resultados r = this.get(key);
             Statement stm = conn.createStatement();
             String sql = "DELETE FROM resultados WHERE participante = '" + (String) key + "' ;";
@@ -204,8 +199,8 @@ public class ResultadosDAO implements Map<String, Resultados> {
     public String removeAll(Object key) throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "DELETE FROM resultados WHERE TipoEleicao = '" + (String) key + "';";
             boolean i = stm.execute(sql);
@@ -227,7 +222,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "DELETE FROM resultados;";
             int i = stm.executeUpdate(sql);
@@ -252,7 +247,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Collection<Resultados> res = new HashSet<Resultados>();
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FORM Resultados");
@@ -275,7 +270,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "Update resultados SET votos = votos + 1 WHERE participante = '" + nomeVoto + "';";
             int i = stm.executeUpdate(sql);
@@ -291,7 +286,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
             ResultSet rs = stm.executeQuery(sql);
@@ -314,7 +309,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
             ResultSet rs = stm.executeQuery(sql);
@@ -337,7 +332,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
             ResultSet rs = stm.executeQuery(sql);
@@ -360,7 +355,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
             ResultSet rs = stm.executeQuery(sql);
@@ -383,7 +378,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Resultados WHERE TipoEleicao ='" + tipo + "';";
             ResultSet rs = stm.executeQuery(sql);
@@ -405,7 +400,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         String tipo = "Assembleia";
         Class.forName("com.mysql.jdbc.Driver");
         this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-        //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+        //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
         Statement stm = conn.createStatement();
         String sql = "SELECT * FROM Resultados WHERE TipoEleicao = '" + tipo + "';";
         ResultSet rs = stm.executeQuery(sql);
@@ -421,7 +416,7 @@ public class ResultadosDAO implements Map<String, Resultados> {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             Statement stm = conn.createStatement();
             String sql = "UPDATE resultados SET deputados = FLOOR(votos / '" + qe + "') ;";
             int i = stm.executeUpdate(sql);

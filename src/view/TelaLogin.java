@@ -7,6 +7,9 @@ package view;
 
 import business.Facade;
 import dataacess.EleitorDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -195,7 +198,11 @@ public class TelaLogin extends javax.swing.JFrame {
         }
         catch (Exception e) {JOptionPane.showMessageDialog(null, "Acesso Negado");return;}
         if (Facade.testaLogin(foo) && Facade.testaPass(foo, pass) && !Visto_Administrador.isSelected()) {
-            JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Eleitor" + numeroEleitor.getText()); new MenuEleitor().setVisible(true);
+            JOptionPane.showMessageDialog(null, "Bem-Vindo Sr Eleitor" + numeroEleitor.getText()); try {
+                new MenuEleitor().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             this.dispose(); 
         }
             else JOptionPane.showMessageDialog(null, "Acesso Negado");

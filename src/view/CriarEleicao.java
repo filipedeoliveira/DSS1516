@@ -163,7 +163,7 @@ public class CriarEleicao extends javax.swing.JFrame {
                 Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                Facade.inserirVotosBranco();
+                Facade.inserirVotosBranco(tipo);
             } catch (SQLException ex) {
                 Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -192,7 +192,7 @@ public class CriarEleicao extends javax.swing.JFrame {
                 Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                Facade.inserirVotosBranco();
+                Facade.inserirVotosBranco(tipo);
             } catch (SQLException ex) {
                 Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
             }

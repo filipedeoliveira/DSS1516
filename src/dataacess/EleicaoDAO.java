@@ -30,8 +30,8 @@ public class EleicaoDAO implements Map<String, Eleicao> {
     public EleicaoDAO() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } 
@@ -41,8 +41,8 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         Eleicao e = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "INSERT INTO eleicao (nEleicao, tipo, dataEncerramento, estado) VALUES (\"" + value.getNumeroEleicao() + "\",\"" + value.getTipoEleicao() + "\",\"" + value.getData() + "\",\"" + value.getEstado() + "\");";
             int i = stm.executeUpdate(sql);
@@ -63,8 +63,8 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         Eleicao e = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "UPDATE eleicao SET estado='Terminado' WHERE nEleicao>=1 AND nEleicao<5000";
             int i = stm.executeUpdate(sql);
@@ -79,8 +79,8 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         Eleicao e = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "UPDATE eleicao SET estado='Terminado' WHERE nEleicao>=5000";
             int i = stm.executeUpdate(sql);
@@ -93,8 +93,8 @@ public class EleicaoDAO implements Map<String, Eleicao> {
 
     public Eleicao alterarEstado(Object key) throws SQLException {
         try {Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Eleicao el = this.get(key);
             Statement stm = conn.createStatement();
             String sql = "UPDATE eleicao SET estado='Terminado' WHERE tipo = '" + (String) key + "';";
@@ -111,8 +111,8 @@ public class EleicaoDAO implements Map<String, Eleicao> {
     public int size() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
-            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
+            //this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             int contador = 0;
             Statement stm = conn.createStatement();
             ResultSet i = stm.executeQuery("SELECT * FROM Eleicao");

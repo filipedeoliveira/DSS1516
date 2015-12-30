@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -357,12 +357,18 @@ public class Facade {
               dao.totalVotos();
           }
         
-          public static void inserirVotosBranco() throws SQLException{
+          public static void inserirVotosBranco(String tipo) throws SQLException{
               ResultadosDAO dao = new ResultadosDAO();
-              String nome = "Branco";
-              String tipo = "Assembleia";
+              if (tipo.equals("Assembleia")){
+              String nome = "BrancoAss";
               Resultados r = new Resultados (0,nome,0,0,tipo);
               dao.put(nome, r);
+              }
+              else{
+              String nome = "BrancoPres";
+              Resultados r = new Resultados (0,nome,0,0,tipo);
+              dao.put(nome, r);
+              }
           }
           
           public static void limparResultados(String tipo) throws SQLException{
@@ -384,6 +390,11 @@ public class Facade {
               CirculoEleitoralDAO dao = new CirculoEleitoralDAO();
               int i = dao.getID(distrito);
               return i;
+          }
+          
+          public static boolean existeE(int numeroCC) throws SQLException{
+              EleitorDAO dao = new EleitorDAO();
+              return dao.containsKey(numeroCC);
           }
         
 }
