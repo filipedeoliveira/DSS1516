@@ -40,12 +40,21 @@ public class EleicaoDAO implements Map<String, Eleicao> {
     public Eleicao put(String tipo, Eleicao value) {
         Eleicao e = null;
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "INSERT INTO eleicao (nEleicao, tipo, dataEncerramento, estado) VALUES (\"" + value.getNumeroEleicao() + "\",\"" + value.getTipoEleicao() + "\",\"" + value.getData() + "\",\"" + value.getEstado() + "\");";
             int i = stm.executeUpdate(sql);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        finally{try {
+            conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(EleicaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
         return new Eleicao();
 
     }
@@ -53,29 +62,39 @@ public class EleicaoDAO implements Map<String, Eleicao> {
     public void terminaEleicaoPresidencial() throws SQLException {
         Eleicao e = null;
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "UPDATE eleicao SET estado='Terminado' WHERE nEleicao>=1 AND nEleicao<5000";
             int i = stm.executeUpdate(sql);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        finally{conn.close();}
 
     }
 
     public void terminaEleicaoAssembleia() throws SQLException {
         Eleicao e = null;
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "UPDATE eleicao SET estado='Terminado' WHERE nEleicao>=5000";
             int i = stm.executeUpdate(sql);
         } catch (Exception ex) {
             ex.printStackTrace();
         } 
+        finally{conn.close();}
 
     }
 
     public Eleicao alterarEstado(Object key) throws SQLException {
-        try {
+        try {Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Eleicao el = this.get(key);
             Statement stm = conn.createStatement();
             String sql = "UPDATE eleicao SET estado='Terminado' WHERE tipo = '" + (String) key + "';";
@@ -85,11 +104,15 @@ public class EleicaoDAO implements Map<String, Eleicao> {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
         } 
+        finally{conn.close();}
     }
 
     @Override
     public int size() {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             int contador = 0;
             Statement stm = conn.createStatement();
             ResultSet i = stm.executeQuery("SELECT * FROM Eleicao");
@@ -99,6 +122,12 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
         } 
+        finally{try {
+            conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(EleicaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
     }
 
     @Override
@@ -114,6 +143,9 @@ public class EleicaoDAO implements Map<String, Eleicao> {
     @Override
     public boolean containsValue(Object value) {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Eleicao WHERE tipo='" + (String) value + "'";
             ResultSet rs = stm.executeQuery(sql);
@@ -121,11 +153,20 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
         }
+        finally{try {
+            conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(EleicaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
     }
 
     public int getIdEleicao(String tipo) throws SQLException {
         int i = 0;
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM eleicao WHERE tipo = '" + (String) tipo + "' AND estado = 'Decorrer' ;";
             ResultSet rs = stm.executeQuery(sql);
@@ -134,7 +175,8 @@ public class EleicaoDAO implements Map<String, Eleicao> {
             }
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
-        } 
+        }
+        finally{conn.close();}
         return i;
 
     }
@@ -158,6 +200,9 @@ public class EleicaoDAO implements Map<String, Eleicao> {
     @Override
     public Eleicao remove(Object key) {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Eleicao el = this.get(key);
             Statement stm = conn.createStatement();
             String sql = "DELETE FROM Eleicao WHERE tipo = '" + (String) key + "' ;";
@@ -167,6 +212,12 @@ public class EleicaoDAO implements Map<String, Eleicao> {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
         }
+        finally{try {
+            conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(EleicaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
     }
 
     public ArrayList<String> getPresidenciais() throws SQLException {
@@ -174,6 +225,9 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         String est = "Decorrer";
 
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Eleicao WHERE estado='" + est + "'";
             ResultSet rs = stm.executeQuery(sql);
@@ -184,6 +238,7 @@ public class EleicaoDAO implements Map<String, Eleicao> {
             }
         } catch (Exception e) {
         } 
+        finally{conn.close();}
         return res;
     }
 

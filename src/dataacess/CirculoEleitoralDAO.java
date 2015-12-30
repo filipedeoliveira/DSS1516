@@ -37,33 +37,56 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
             //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        } /*finally {
+            conn.close();
+        }*/
     }
 
     public CirculoEleitoral put(String nome, CirculoEleitoral value) {
         CirculoEleitoral ce1 = null;
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "INSERT INTO distrito (nome)  VALUES (\"" + value.getNome() + "\");";
             int i = stm.executeUpdate(sql);
         } catch (Exception e) {
-        } 
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CirculoEleitoralDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return new CirculoEleitoral(value.getIdDistrito(), value.getNome());
 
     }
 
     public void clear() {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "DELETE FROM distrito;";
             int i = stm.executeUpdate(sql);
 
         } catch (Exception e) {
-        } 
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CirculoEleitoralDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public CirculoEleitoral remove(Object key) {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             CirculoEleitoral ce = this.get(key);
             Statement stm = conn.createStatement();
             String sql = "DELETE FROM distrito WHERE nome = '" + (String) key + "' ;";
@@ -72,13 +95,22 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
         } catch (Exception e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
-        } 
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CirculoEleitoralDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
     }
 
     @Override
     public int size() {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             int contador = 0;
             Statement stm = conn.createStatement();
             ResultSet i = stm.executeQuery("SELECT * FROM DISTRITO");
@@ -87,23 +119,41 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
 
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
-        } 
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CirculoEleitoralDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
     public boolean isEmpty() {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * From DISTRITO");
             return !rs.next();
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
-        } 
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CirculoEleitoralDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
     public boolean containsKey(Object key) {
         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM distrito WHERE id='" + (String) key + "'";
             ResultSet rs = stm.executeQuery(sql);
@@ -111,16 +161,27 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
         }
+        finally{try {
+            conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CirculoEleitoralDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
     }
 
     public boolean existeCirculoEleitoral(String ce) throws SQLException {
         try {
+             Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FROM distrito WHERE nome = '" + ce + "';");
             return (rs.next());
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
         }
+        finally{conn.close();}
+        
     }
 
     public int hashCode() {
@@ -130,13 +191,22 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
     @Override
     public boolean containsValue(Object value) {
         try {
+             Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Distrito WHERE nome='" + (String) value + "'";
             ResultSet rs = stm.executeQuery(sql);
             return rs.next();
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
-        } 
+        }
+        finally{try {
+            conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CirculoEleitoralDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
     }
 
     @Override
@@ -168,6 +238,9 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
     @Override
     public Collection<CirculoEleitoral> values() {
         try {
+             Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
+            //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
             Collection<CirculoEleitoral> col = new HashSet<CirculoEleitoral>();
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FORM Distrito");
@@ -178,6 +251,12 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
         }
+        finally{try {
+            conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CirculoEleitoralDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
     }
 
     public int getID(String distrito) {
