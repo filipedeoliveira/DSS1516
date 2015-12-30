@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,14 +27,14 @@ public class EleicaoDAO implements Map<String, Eleicao> {
 
     private Connection conn;
 
-    public EleicaoDAO() {
+    public EleicaoDAO() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
             //this.conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss","root","leicam");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        } 
     }
 
     public Eleicao put(String tipo, Eleicao value) {
@@ -48,7 +50,7 @@ public class EleicaoDAO implements Map<String, Eleicao> {
 
     }
 
-    public void terminaEleicaoPresidencial() {
+    public void terminaEleicaoPresidencial() throws SQLException {
         Eleicao e = null;
         try {
             Statement stm = conn.createStatement();
@@ -59,8 +61,8 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         }
 
     }
-    
-    public void terminaEleicaoAssembleia() {
+
+    public void terminaEleicaoAssembleia() throws SQLException {
         Eleicao e = null;
         try {
             Statement stm = conn.createStatement();
@@ -68,21 +70,21 @@ public class EleicaoDAO implements Map<String, Eleicao> {
             int i = stm.executeUpdate(sql);
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        } 
 
     }
-    
-        public Eleicao alterarEstado(Object key) {
+
+    public Eleicao alterarEstado(Object key) throws SQLException {
         try {
             Eleicao el = this.get(key);
             Statement stm = conn.createStatement();
-            String sql = "UPDATE eleicao SET estado='Terminado' WHERE tipo = '"+(String) key+"';";
+            String sql = "UPDATE eleicao SET estado='Terminado' WHERE tipo = '" + (String) key + "';";
             int i = stm.executeUpdate(sql);
             return el;
         } catch (Exception e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
-        }
+        } 
     }
 
     @Override
@@ -96,7 +98,7 @@ public class EleicaoDAO implements Map<String, Eleicao> {
 
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
-        }
+        } 
     }
 
     @Override
@@ -120,21 +122,21 @@ public class EleicaoDAO implements Map<String, Eleicao> {
             throw new NullPointerException(e.getMessage());
         }
     }
-    
-    
-    public int getIdEleicao(String tipo){
+
+    public int getIdEleicao(String tipo) throws SQLException {
         int i = 0;
         try {
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM eleicao WHERE tipo = '" +(String) tipo+ "' AND estado = 'Decorrer' ;";
+            String sql = "SELECT * FROM eleicao WHERE tipo = '" + (String) tipo + "' AND estado = 'Decorrer' ;";
             ResultSet rs = stm.executeQuery(sql);
-            if (rs.next()){
+            if (rs.next()) {
                 i = rs.getInt(1);
             }
-        }
-        catch (Exception e){ throw new NullPointerException(e.getMessage());}
-        return i ;
-    
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
+        } 
+        return i;
+
     }
 
     @Override
@@ -167,7 +169,7 @@ public class EleicaoDAO implements Map<String, Eleicao> {
         }
     }
 
-    public ArrayList<String> getPresidenciais() {
+    public ArrayList<String> getPresidenciais() throws SQLException {
         ArrayList<String> res = new ArrayList<String>();
         String est = "Decorrer";
 
@@ -181,7 +183,7 @@ public class EleicaoDAO implements Map<String, Eleicao> {
 
             }
         } catch (Exception e) {
-        }
+        } 
         return res;
     }
 

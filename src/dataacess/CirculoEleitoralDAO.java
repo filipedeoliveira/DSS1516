@@ -19,6 +19,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +30,7 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
 
     private Connection conn;
 
-    public CirculoEleitoralDAO() {
+    public CirculoEleitoralDAO() throws SQLException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/dss", "root", "Filipe_94");
@@ -45,8 +47,8 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
             String sql = "INSERT INTO distrito (nome)  VALUES (\"" + value.getNome() + "\");";
             int i = stm.executeUpdate(sql);
         } catch (Exception e) {
-        }
-        return new CirculoEleitoral(value.getIdDistrito(),value.getNome());
+        } 
+        return new CirculoEleitoral(value.getIdDistrito(), value.getNome());
 
     }
 
@@ -57,20 +59,20 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
             int i = stm.executeUpdate(sql);
 
         } catch (Exception e) {
-        }
+        } 
     }
 
     public CirculoEleitoral remove(Object key) {
         try {
             CirculoEleitoral ce = this.get(key);
             Statement stm = conn.createStatement();
-            String sql = "DELETE FROM distrito WHERE nome = '"+(String) key+"' ;";
-            boolean i  = stm.execute(sql);
+            String sql = "DELETE FROM distrito WHERE nome = '" + (String) key + "' ;";
+            boolean i = stm.execute(sql);
             return ce;
         } catch (Exception e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());
-        }
+        } 
 
     }
 
@@ -85,7 +87,7 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
 
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
-        }
+        } 
     }
 
     @Override
@@ -96,7 +98,7 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
             return !rs.next();
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
-        }
+        } 
     }
 
     @Override
@@ -111,7 +113,7 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
         }
     }
 
-    public boolean existeCirculoEleitoral(String ce) {
+    public boolean existeCirculoEleitoral(String ce) throws SQLException {
         try {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FROM distrito WHERE nome = '" + ce + "';");
@@ -127,14 +129,14 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
 
     @Override
     public boolean containsValue(Object value) {
-         try {
+        try {
             Statement stm = conn.createStatement();
             String sql = "SELECT * FROM Distrito WHERE nome='" + (String) value + "'";
             ResultSet rs = stm.executeQuery(sql);
             return rs.next();
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
-        }
+        } 
     }
 
     @Override
@@ -170,23 +172,23 @@ public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FORM Distrito");
             for (; rs.next();) {
-                col.add(new CirculoEleitoral(rs.getInt(1),rs.getString(2)));
+                col.add(new CirculoEleitoral(rs.getInt(1), rs.getString(2)));
             }
             return col;
         } catch (Exception e) {
             throw new NullPointerException(e.getMessage());
         }
-
     }
-    
-    public int getID(String distrito){
-        try{
+
+    public int getID(String distrito) {
+        try {
             CirculoEleitoral ce = this.get(distrito);
             int id = ce.getIdDistrito();
             return id;
+        } catch (Exception e) {
+            throw new NullPointerException(e.getMessage());
         }
-        catch (Exception e){throw new NullPointerException(e.getMessage());}
-        
+
     }
 
     @Override
