@@ -192,7 +192,7 @@ public class Facade {
         return i;
     }
 
-    public static DefaultListModel<String> validacoesL(String tipo) {
+    public static DefaultListModel<String> validacoesL(String tipo) throws SQLException {
         ListaDAO l = new ListaDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -203,7 +203,7 @@ public class Facade {
         return dlm;
     }
 
-    public static DefaultListModel<String> tipoE() {
+    public static DefaultListModel<String> tipoE() throws SQLException {
         EleicaoDAO e = new EleicaoDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -214,7 +214,7 @@ public class Facade {
         return dlm;
     }
 
-    public static DefaultListModel<String> assembvoto() {
+    public static DefaultListModel<String> assembvoto() throws SQLException {
         ListaDAO e = new ListaDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -225,7 +225,7 @@ public class Facade {
         return dlm;
     }
 
-    public static DefaultListModel<String> presvoto() {
+    public static DefaultListModel<String> presvoto() throws SQLException {
         ListaDAO e = new ListaDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -346,13 +346,13 @@ public class Facade {
             }
             return dlm;}
           
-          public static void updateDeputados() throws SQLException{
+          public static void updateDeputados() throws SQLException, ClassNotFoundException{
               ResultadosDAO dao = new ResultadosDAO();
               int i = dao.totalVotos()/230;
               dao.updateDeputados(i);
           }
           
-          public static void totalVotos() throws SQLException{
+          public static void totalVotos() throws SQLException, ClassNotFoundException{
               ResultadosDAO dao = new ResultadosDAO();
               dao.totalVotos();
           }
@@ -370,17 +370,17 @@ public class Facade {
               dao.removeAll(tipo);
           }
           
-          public static void limparLista(String tipo){
+          public static void limparLista(String tipo) throws SQLException{
               ListaDAO dao = new ListaDAO();
               dao.removeAll(tipo);
           }
           
-          public static void limparParticipantes() {
+          public static void limparParticipantes() throws SQLException {
               ParticipanteDAO dao2 = new ParticipanteDAO();
               dao2.clear();
           }
           
-          public static int getIdDistrito(String distrito){
+          public static int getIdDistrito(String distrito) throws SQLException{
               CirculoEleitoralDAO dao = new CirculoEleitoralDAO();
               int i = dao.getID(distrito);
               return i;
