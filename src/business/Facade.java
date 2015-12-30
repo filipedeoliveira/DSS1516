@@ -192,7 +192,7 @@ public class Facade {
         return i;
     }
 
-    public static DefaultListModel<String> validacoesL(String tipo) throws SQLException {
+    public static DefaultListModel<String> validacoesL(String tipo) {
         ListaDAO l = new ListaDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -203,7 +203,7 @@ public class Facade {
         return dlm;
     }
 
-    public static DefaultListModel<String> tipoE() throws SQLException {
+    public static DefaultListModel<String> tipoE() {
         EleicaoDAO e = new EleicaoDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -214,7 +214,7 @@ public class Facade {
         return dlm;
     }
 
-    public static DefaultListModel<String> assembvoto() throws SQLException {
+    public static DefaultListModel<String> assembvoto() {
         ListaDAO e = new ListaDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -225,7 +225,7 @@ public class Facade {
         return dlm;
     }
 
-    public static DefaultListModel<String> presvoto() throws SQLException {
+    public static DefaultListModel<String> presvoto() {
         ListaDAO e = new ListaDAO();
         ArrayList<String> aux = new ArrayList<String>();
         DefaultListModel<String> dlm = new DefaultListModel<>();
@@ -346,13 +346,13 @@ public class Facade {
             }
             return dlm;}
           
-          public static void updateDeputados() throws SQLException, ClassNotFoundException{
+          public static void updateDeputados() throws SQLException{
               ResultadosDAO dao = new ResultadosDAO();
               int i = dao.totalVotos()/230;
               dao.updateDeputados(i);
           }
           
-          public static void totalVotos() throws SQLException, ClassNotFoundException{
+          public static void totalVotos() throws SQLException{
               ResultadosDAO dao = new ResultadosDAO();
               dao.totalVotos();
           }
@@ -370,17 +370,17 @@ public class Facade {
               dao.removeAll(tipo);
           }
           
-          public static void limparLista(String tipo) throws SQLException{
+          public static void limparLista(String tipo){
               ListaDAO dao = new ListaDAO();
               dao.removeAll(tipo);
           }
           
-          public static void limparParticipantes() throws SQLException {
+          public static void limparParticipantes() {
               ParticipanteDAO dao2 = new ParticipanteDAO();
               dao2.clear();
           }
           
-          public static int getIdDistrito(String distrito) throws SQLException{
+          public static int getIdDistrito(String distrito){
               CirculoEleitoralDAO dao = new CirculoEleitoralDAO();
               int i = dao.getID(distrito);
               return i;
