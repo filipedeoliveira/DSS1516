@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Filipe Oliveira
+ * @author 
  */
 public class ListaDAO implements Map<String, Lista> {
 

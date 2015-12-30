@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Filipe Oliveira
+ * @author 
  */
 public class CirculoEleitoralDAO implements Map<String, CirculoEleitoral> {
 

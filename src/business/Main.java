@@ -9,7 +9,7 @@ import view.TelaLogin;
 
 /**
  *
- * @author Filipe Oliveira
+ * @author 
  */
 public class Main {
 

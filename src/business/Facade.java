@@ -19,7 +19,7 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Filipe Oliveira
+ * @author 
  */
 public class Facade {
 

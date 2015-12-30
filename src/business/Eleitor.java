@@ -10,7 +10,7 @@ import view.ResgistarEleitor;
 
 /**
  *
- * @author Filipe Oliveira
+ * @author 
  */
 public class Eleitor {
     

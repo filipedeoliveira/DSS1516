@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Filipe Oliveira
+ * @author 
  */
 public class Lista {
 

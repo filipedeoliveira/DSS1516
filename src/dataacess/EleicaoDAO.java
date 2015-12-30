@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Filipe Oliveira
+ * @author 
  */
 public class EleicaoDAO implements Map<String, Eleicao> {
 

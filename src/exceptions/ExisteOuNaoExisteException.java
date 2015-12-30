@@ -7,7 +7,7 @@ package exceptions;
 
 /**
  *
- * @author Filipe Oliveira
+ * @author 
  */
 public class ExisteOuNaoExisteException extends Exception {
     public ExisteOuNaoExisteException(String message){super(message);}

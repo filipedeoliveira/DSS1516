@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Filipe Oliveira
+ * @author 
  */
 public class ResultadosDAO implements Map<String, Resultados> {
 
