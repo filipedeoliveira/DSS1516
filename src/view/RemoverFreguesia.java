@@ -49,6 +49,11 @@ public class RemoverFreguesia extends javax.swing.JFrame {
         });
 
         jToggleButton2.setText("Retroceder");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,6 +124,11 @@ public class RemoverFreguesia extends javax.swing.JFrame {
             new Freguesias().setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+            new Freguesias().setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     /**
      * @param args the command line arguments
