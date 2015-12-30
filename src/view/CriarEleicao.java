@@ -167,8 +167,16 @@ public class CriarEleicao extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
             }
+            try {
                 Facade.limparParticipantes();
-                Facade.limparLista(tipo);  
+            } catch (SQLException ex) {
+                Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {  
+                Facade.limparLista(tipo);
+            } catch (SQLException ex) {
+                Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
             
 
@@ -188,7 +196,11 @@ public class CriarEleicao extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Facade.limparLista(tipo);
+            try {
+                Facade.limparLista(tipo);
+            } catch (SQLException ex) {
+                Logger.getLogger(CriarEleicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JOptionPane.showMessageDialog(null, "Eleição criada com sucesso! ");
         } else {
             JOptionPane.showMessageDialog(null, "Valor inválido! ");

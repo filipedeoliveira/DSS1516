@@ -9,6 +9,9 @@ import business.Facade;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import dataacess.EleicaoDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,12 +22,12 @@ public class MenuEleitor extends javax.swing.JFrame {
     /**
      * Creates new form MenuEleitor
      */
-    public MenuEleitor() {
+    public MenuEleitor() throws SQLException {
         initComponents();
         fillDataPres();
     }
 
-    public void fillDataPres() {
+    public void fillDataPres() throws SQLException {
         DefaultListModel<String> dlm = new DefaultListModel<String>();
         dlm = Facade.tipoE();
         jList2.setModel(dlm);
@@ -211,7 +214,11 @@ public class MenuEleitor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new ListasVoto().setVisible(true);
+        try {
+            new ListasVoto().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuEleitor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -252,7 +259,11 @@ public class MenuEleitor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuEleitor().setVisible(true);
+                try {
+                    new MenuEleitor().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuEleitor.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -6,6 +6,9 @@
 package view;
 
 import business.Facade;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -17,7 +20,7 @@ public class ListasVoto extends javax.swing.JFrame {
     /**
      * Creates new form ListasVoto
      */
-    public ListasVoto() {
+    public ListasVoto() throws SQLException {
         initComponents();
         fillDataVoto();
     }
@@ -146,7 +149,7 @@ public class ListasVoto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void fillDataVoto() {
+    public void fillDataVoto() throws SQLException {
         DefaultListModel<String> dlm = new DefaultListModel<String>();
         dlm = Facade.assembvoto();
         Votar.setModel(dlm);
@@ -200,7 +203,11 @@ public class ListasVoto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListasVoto().setVisible(true);
+                try {
+                    new ListasVoto().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ListasVoto.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

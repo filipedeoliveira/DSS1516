@@ -7,6 +7,9 @@ package view;
 
 import business.Facade;
 import business.Resultados;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -18,7 +21,7 @@ public class ValidaCandidaturaAssembleia extends javax.swing.JFrame {
     /**
      * Creates new form ValidaCandidaturaAssembleia
      */
-    public ValidaCandidaturaAssembleia() {
+    public ValidaCandidaturaAssembleia() throws SQLException {
         initComponents();
         fillDataPres();
     }
@@ -135,7 +138,11 @@ public class ValidaCandidaturaAssembleia extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Object j = Listas.getSelectedValue();
          Facade.validar(j);
-         fillDataPres();
+        try {
+            fillDataPres();
+        } catch (SQLException ex) {
+            Logger.getLogger(ValidaCandidaturaAssembleia.class.getName()).log(Level.SEVERE, null, ex);
+        }
          String tipo = "Assembleia";
          Resultados r = new Resultados(0,(String)j,0,0, tipo);
          Facade.preencheResultadosListasAss((String) j, r);
@@ -146,14 +153,18 @@ public class ValidaCandidaturaAssembleia extends javax.swing.JFrame {
         int id = Facade.idListapart((String) j);
         Facade.removerP(id);
         Facade.removerL(j);
-        fillDataPres();
+        try {
+            fillDataPres();
+        } catch (SQLException ex) {
+            Logger.getLogger(ValidaCandidaturaAssembleia.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     
-    public void fillDataPres() {
+    public void fillDataPres() throws SQLException {
         DefaultListModel<String> dlm = new DefaultListModel<String>();
         String tipo = "Assembleia";
         dlm = Facade.validacoesL(tipo);
@@ -187,7 +198,11 @@ public class ValidaCandidaturaAssembleia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ValidaCandidaturaAssembleia().setVisible(true);
+                try {
+                    new ValidaCandidaturaAssembleia().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ValidaCandidaturaAssembleia.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

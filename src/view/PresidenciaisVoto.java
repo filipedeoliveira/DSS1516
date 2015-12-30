@@ -6,6 +6,9 @@
 package view;
 
 import business.Facade;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonModel;
 import javax.swing.DefaultListModel;
 
@@ -18,12 +21,12 @@ public class PresidenciaisVoto extends javax.swing.JFrame {
     /**
      * Creates new form PresidenciaisVoto
      */
-    public PresidenciaisVoto() {
+    public PresidenciaisVoto() throws SQLException {
         initComponents();
         fillDataVoto();
     }
 
-    public void fillDataVoto() {
+    public void fillDataVoto() throws SQLException {
         DefaultListModel<String> dlm = new DefaultListModel<String>();
         dlm = Facade.presvoto();
         VotarL.setModel(dlm);
@@ -125,7 +128,11 @@ public class PresidenciaisVoto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new MenuEleitor().setVisible(true);
+        try {
+            new MenuEleitor().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(PresidenciaisVoto.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -133,7 +140,11 @@ public class PresidenciaisVoto extends javax.swing.JFrame {
         Object j = VotarL.getSelectedValue();
         String tipo = "Presidêncial";
         Facade.insereVoto((String) j, tipo);
-        new MenuEleitor().setVisible(true);
+        try {
+            new MenuEleitor().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(PresidenciaisVoto.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_VotarActionPerformed
 
@@ -167,7 +178,11 @@ public class PresidenciaisVoto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PresidenciaisVoto().setVisible(true);
+                try {
+                    new PresidenciaisVoto().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PresidenciaisVoto.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

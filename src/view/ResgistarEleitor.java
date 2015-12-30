@@ -7,6 +7,9 @@ package view;
 
 import business.Facade;
 import business.Eleitor;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -175,7 +178,12 @@ public class ResgistarEleitor extends javax.swing.JFrame {
         f = this.distrito.getText();
         
         int numero = Integer.parseInt(s);
-        int idDistrito = Facade.getIdDistrito(f); //alterar para uma função
+        int idDistrito = 0; 
+            try {
+                idDistrito = Facade.getIdDistrito(f); //alterar para uma função
+            } catch (SQLException ex) {
+                Logger.getLogger(ResgistarEleitor.class.getName()).log(Level.SEVERE, null, ex);
+            }
         Eleitor e = new Eleitor(67686,a,numero,d,idDistrito);
 
         Facade.inserirEleitor(67686,a,numero,d,idDistrito);

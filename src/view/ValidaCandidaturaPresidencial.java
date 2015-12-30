@@ -8,7 +8,10 @@ package view;
 import business.Facade;
 import business.Resultados;
 import dataacess.ListaDAO;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -20,12 +23,12 @@ public class ValidaCandidaturaPresidencial extends javax.swing.JFrame {
     /**
      * Creates new form ValidaCandidatura
      */
-    public ValidaCandidaturaPresidencial() {
+    public ValidaCandidaturaPresidencial() throws SQLException {
         initComponents();
         fillDataPres();
     }
     
-     public void fillDataPres() {
+     public void fillDataPres() throws SQLException {
         DefaultListModel<String> dlm = new DefaultListModel<String>();
         String tipo = "Presidencial";
         dlm = Facade.validacoesL(tipo);
@@ -149,7 +152,11 @@ public class ValidaCandidaturaPresidencial extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          Object j = Listas.getSelectedValue();
          Facade.validar(j);
-         fillDataPres();
+        try {
+            fillDataPres();
+        } catch (SQLException ex) {
+            Logger.getLogger(ValidaCandidaturaPresidencial.class.getName()).log(Level.SEVERE, null, ex);
+        }
          String tipo = "Presidêncial";
          Resultados r = new Resultados(0,(String) j,0,0, tipo);
          Facade.preencheResultadosListaPres((String) j, r);
@@ -159,7 +166,11 @@ public class ValidaCandidaturaPresidencial extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Object j = Listas.getSelectedValue();
         Facade.removerL(j);
-        fillDataPres();
+        try {
+            fillDataPres();
+        } catch (SQLException ex) {
+            Logger.getLogger(ValidaCandidaturaPresidencial.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -193,7 +204,11 @@ public class ValidaCandidaturaPresidencial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ValidaCandidaturaPresidencial().setVisible(true);
+                try {
+                    new ValidaCandidaturaPresidencial().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ValidaCandidaturaPresidencial.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

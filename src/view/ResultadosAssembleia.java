@@ -186,6 +186,8 @@ public class ResultadosAssembleia extends javax.swing.JFrame {
             fillDataASS();
         } catch (SQLException ex) {
           
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResultadosAssembleia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
